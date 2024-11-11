@@ -1,0 +1,211 @@
+:root {
+    --color1: rgb(100, 100, 100);
+    --color2: rgb(250, 250, 240);
+    --color3: rgb(10, 10, 10);
+    --colorBG1: rgb(250, 250, 250);
+    --colorBG2: rgb(248, 135, 6);
+    --colorBG3: rgb(255, 255, 255);
+    --colorBG4: rgb(255,255,255);
+    --boxShadow1: 0px 5px 5px 0px rgba(0, 0, 0, 0.1);
+}
+
+:root[theme="dark"] {
+    --color1: rgb(250, 250, 250);
+    --color2: rgb(240, 240, 230);
+    --color3: rgb(240, 240, 240);
+    --color4: rgb(243, 161, 8);
+    --color5: rgb(37, 84, 255);
+    --colorBG1: rgb(90, 90, 90);
+    --colorBG2: rgb(248, 135, 6);
+    --colorBG3: rgb(100, 100, 100);
+    --colorBG4: rgb(80, 80, 80);
+    --boxShadow1: 0px 5px 5px 0px rgba(0, 0, 0, 0.2);
+    
+    dialog::backdrop {
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+}
+
+body {
+    background-color: var(--colorBG3);
+    color: var(--color3);
+}
+
+.color1 {
+    color: var(--color1);
+    fill: var(--color1);
+}
+
+.color2 {
+    color: var(--color2);
+    fill: var(--color2);
+}
+
+.color3{
+    color: var(--color3);
+    fill: var(--color3);
+}
+
+.color4{
+    color: var(--color4);
+    fill: var(--color4);
+}
+
+.color5{
+    color: var(--color5);
+    fill: var(--color5);
+}
+
+.backgroundColor1 {
+    background-color: var(--colorBG1);
+}
+
+.backgroundColor2 {
+    background-color: var(--colorBG2);
+}
+
+.backgroundColor4{
+    background-color: var(--colorBG4);
+}
+
+
+/* LOADER */
+.lds-dual-ring {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+}
+
+.lds-dual-ring:after {
+    content: " ";
+    display: block;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border-radius: 50%;
+    border: 6px solid var(--colorBG2);
+    border-color: var(--colorBG2) transparent var(--colorBG2) transparent;
+    animation: lds-dual-ring 1.2s linear infinite;
+}
+
+@keyframes lds-dual-ring {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+#loading[open] {
+    opacity: 1;
+    visibility: visible;
+}
+
+#loading {
+    width: 100vw;
+    height: 100%;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.25s, visibility 0.25s, display 0.25s ease allow-discrete;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 10;
+    background-color: rgba(255,255,255, 0.5);
+    backdrop-filter: blur(5px);
+    color: var(--color3);
+}
+
+:root[theme="dark"] #loading {
+    background-color: rgba(0,0,0, 0.33);
+}
+
+.preload {
+    overflow: hidden;
+}
+
+/* TABLE */
+table {
+    width: 100%;
+}
+
+table thead{
+    white-space: nowrap;  /* Prevent wrapping inside the container */
+    height: 60px;
+}
+
+table * {
+    border: none !important;
+}
+
+table tr:nth-child(even) {
+    background-color: var(--colorBG1);
+}
+
+.tableContainer{
+    min-width: 100%;
+    overflow-x: auto;
+    box-shadow: var(--boxShadow1);
+    border-radius: 10px;
+}
+
+:root {
+    .tableContainer::-webkit-scrollbar {
+        width: 12px;
+    }
+    
+    .tableContainer::-webkit-scrollbar-track {
+        background: rgb(255,255,255);
+        border-radius: 0px 0px 10px 10px;
+    }
+    
+    .tableContainer::-webkit-scrollbar-thumb {
+        background-color: rgb(220, 220, 220);
+        border-radius: 0px 0px 10px 10px;
+    }
+}
+
+:root[theme="dark"] {
+    .tableContainer::-webkit-scrollbar {
+        width: 12px;
+    }
+    
+    .tableContainer::-webkit-scrollbar-track {
+        background: rgb(70,70,70);
+        border-radius: 0px 0px 10px 10px;
+    }
+    
+    .tableContainer::-webkit-scrollbar-thumb {
+        background-color: rgb(89, 89, 89);
+        border-radius: 0px 0px 10px 10px;
+    }
+}
+
+.difuminated {
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+}
+
+.product-card {
+    border: 2px solid var(--colorBG1);
+    padding: 1rem;
+}
+
+/* OTHERS */
+.dialog[open] {
+    width: 400px;
+    background-color: var(--colorBG1);
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    box-shadow: var(--boxShadow1);
+    color: var(--color3);
+}
+
+/* Remove border when an element is focused */
+* {
+    border: none;
+    outline: none;
+}

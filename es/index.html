@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="../styles/styles.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../js/beforeLoad.js"></script>
+</head>
+<body class="preload" data-spy="#scroll" data-target="#nav" data-offset="20">
+    <dialog open id="loading" class="flex flex-col">
+        <span class="lds-dual-ring"></span>
+        <span>Loading...</span>
+    </dialog>
+    <header class="flex flex-row justify-between items-center p-3 px-5 color1 backgroundColor1"
+        style="font-weight: 600;">
+        <button onclick="changeDayTime()">
+            <svg id="dayIcon" class="color1 hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path
+                    d="M4.069 13h-4.069v-2h4.069c-.041.328-.069.661-.069 1s.028.672.069 1zm3.034-7.312l-2.881-2.881-1.414 1.414 2.881 2.881c.411-.529.885-1.003 1.414-1.414zm11.209 1.414l2.881-2.881-1.414-1.414-2.881 2.881c.528.411 1.002.886 1.414 1.414zm-6.312-3.102c.339 0 .672.028 1 .069v-4.069h-2v4.069c.328-.041.661-.069 1-.069zm0 16c-.339 0-.672-.028-1-.069v4.069h2v-4.069c-.328.041-.661.069-1 .069zm7.931-9c.041.328.069.661.069 1s-.028.672-.069 1h4.069v-2h-4.069zm-3.033 7.312l2.88 2.88 1.415-1.414-2.88-2.88c-.412.528-.886 1.002-1.415 1.414zm-11.21-1.415l-2.88 2.88 1.414 1.414 2.88-2.88c-.528-.411-1.003-.885-1.414-1.414zm2.312-4.897c0 2.206 1.794 4 4 4s4-1.794 4-4-1.794-4-4-4-4 1.794-4 4zm10 0c0 3.314-2.686 6-6 6s-6-2.686-6-6 2.686-6 6-6 6 2.686 6 6z" />
+            </svg>
+            <svg id="nightIcon" class="color1 hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0c-1.109 0-2.178.162-3.197.444 3.826 5.933-2.026 13.496-8.781 11.128l-.022.428c0 6.627 5.373 12 12 12s12-5.373 12-12-5.373-12-12-12z"/></svg>
+        </button>
+        <svg class="hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path
+                d="M10.719 2.082c-2.572 2.028-4.719 5.212-4.719 9.918 0 4.569 1.938 7.798 4.548 9.895-4.829-.705-8.548-4.874-8.548-9.895 0-5.08 3.808-9.288 8.719-9.918zm1.281-2.082c-6.617 0-12 5.383-12 12s5.383 12 12 12c1.894 0 3.87-.333 5.37-1.179-3.453-.613-9.37-3.367-9.37-10.821 0-7.555 6.422-10.317 9.37-10.821-1.74-.682-3.476-1.179-5.37-1.179zm0 10.999c1.437.438 2.562 1.564 2.999 3.001.44-1.437 1.565-2.562 3.001-3-1.436-.439-2.561-1.563-3.001-3-.437 1.436-1.562 2.561-2.999 2.999zm8.001.001c.958.293 1.707 1.042 2 2.001.291-.959 1.042-1.709 1.999-2.001-.957-.292-1.707-1.042-2-2-.293.958-1.042 1.708-1.999 2zm-1-9c-.437 1.437-1.563 2.562-2.998 3.001 1.438.44 2.561 1.564 3.001 3.002.437-1.438 1.563-2.563 2.996-3.002-1.433-.437-2.559-1.564-2.999-3.001z" />
+        </svg>
+        <span style="user-select: none; font-size: 1.2rem;">KnowYourDrug</span>
+        <a href="../index.html">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAACX0lEQVR4nO2ZzU4UQRSFj4pdmllo1Ig/C3eKU5ewQKKvoMaoCx8E8AWE6IqRoK+goCG6cUtil8YHUIlRp66jyKA+wDDLMtUZQRk6VtM9XT3aJznJZFJd+U7VraT7FlCqVKnUMsCuT2dxngmTTHjEhGVNaGqJ9ciEJku8ZcKCHWPH2mfgWx9GcFJL3NESDSaYJLbPaMLtL2dwInfw96dxhAmzmtBOCr5NkHU7l50zF3hNuBSVRErwLkv80ITrPQM3N7BHS9zPHJy6gswZYHem8CsXsJ8lnvYcnjb8pHEK+zKBt6thJ8wR3kRng/DM7nrqACxxL2943jzgd9PCX/EFz5s7sbOD3RjBQZZYLUCAtZUqDiUOYJSoGSVMQVxLBr9UGTShaBUA3ES2LEuVQfcAoZj2Dq26QkwlKJ+g7h1YbXWgjXF4ATThwJh/WLG9nw+cc1n9m95BVVwZBRMOAcRj76Aq1vMOJSSWCwBqYvzGpYS+FbiEmi4l1PYOqmLd7u8AoWg5nIFgzTuoinOw+h8c4lAsFLeEggcuJTTpHVTF+EUw3t+vEi/3jv41QBRCiY/eYdVWB9oJvrCv00rc6u8PmleVo84BOmU04x1cbXgGScWjOMASX/v2o96KCZd9B6gTriGNbOfY2+pLJC+dArUWFzNr8tpGa54hNGExs+buHzshMZdDgNnM2+u/Sw/jYi8uOLTE9/owriIPvRvCYds57lwPpQVvaYmanRN56/MQjjNhmiV4B/CaJaYaVRxDEcQSY0yYYMK8lnhtO9u/rlk7v+1/D7mKcTvWN2+pUv+KfgLTznkDr/tKugAAAABJRU5ErkJggg==">
+        </a>
+        <!-- <span style="user-select: none;">EN</span> -->
+        <span class="hidden" style="user-select: none;">ES</span>
+    </header>
+    <main class="p-5">
+        <div class="flex flex-row justify-end gap-2">
+            <button id="orderButton" class="color2 backgroundColor2 p-2 rounded-lg" onclick="openDialog('orderDialog')">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path d="M12 0l8 10h-16l8-10zm8 14h-16l8 10 8-10z" />
+                </svg>
+            </button>
+            <dialog id="orderDialog" class="dialog p-5 gap-5">
+                <span class="text-center color2 backgroundColor2">Order</span>
+                <div class="flex flex-col justify-center h-full gap-3">
+                    <div class="flex flex-row items-center gap-3">
+                        <span>Order by</span>
+                        <select id="orderSelect" class="color2 backgroundColor2 p-1 rounded-lg" onchange="orderSelectChange(this)">
+                            <option value="Name">Name</option>
+                            <option value="Origin">Origin</option>
+                            <option value="Action">Action</option>
+                            <option value="Administration">Administration</option>
+                            <option value="Legal">Legal</option>
+                            <option value="SecondaryEffectProbability">S.E. Probability</option>
+                            <option value="SecondaryEffectSeverity">S.E. Severity</option>
+                        </select>
+                    </div>
+                    <div class="flex flex-row items-center gap-3">
+                        <span>Direction</span>
+                        <button class="color2 backgroundColor2 p-2 rounded-lg" onclick="orderDirectionChange(this)">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M12 24l-8-9h6v-15h4v15h6z"/></svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="flex flex-row justify-end gap-3">
+                    <button class="color1 p-2 rounded-lg" onclick="closeDialog('orderDialog')">Close</button>
+                </div>
+            </dialog>
+            <button class="color2 backgroundColor2 p-2 rounded-lg">
+                <svg style="position: relative; bottom: 1px; right: 1px;" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M13.5 2c-5.621 0-10.211 4.443-10.475 10h-3.025l5 6.625 5-6.625h-2.975c.257-3.351 3.06-6 6.475-6 3.584 0 6.5 2.916 6.5 6.5s-2.916 6.5-6.5 6.5c-1.863 0-3.542-.793-4.728-2.053l-2.427 3.216c1.877 1.754 4.389 2.837 7.155 2.837 5.79 0 10.5-4.71 10.5-10.5s-4.71-10.5-10.5-10.5z"/></svg>
+            </button>
+            <button class="color2 backgroundColor2 p-2 rounded-lg">
+                <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" width="24"
+                    height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="m16.5 11.995c0-1.242 1.008-2.25 2.25-2.25s2.25 1.008 2.25 2.25-1.008 2.25-2.25 2.25-2.25-1.008-2.25-2.25zm-6.75 0c0-1.242 1.008-2.25 2.25-2.25s2.25 1.008 2.25 2.25-1.008 2.25-2.25 2.25-2.25-1.008-2.25-2.25zm-6.75 0c0-1.242 1.008-2.25 2.25-2.25s2.25 1.008 2.25 2.25-1.008 2.25-2.25 2.25-2.25-1.008-2.25-2.25z" />
+                </svg>
+            </button>
+            <button class="color2 backgroundColor2 p-2 rounded-lg" onclick="downloadFile()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path d="M7 2v-2h10v2h-10zm0 4h10v-2h-10v2zm10 7v-5h-10v5h-6l11 11 11-11h-6z" />
+                </svg>
+            </button>
+            <button id="commentButton" class="color2 backgroundColor2 p-2 rounded-lg" onclick="openDialog('commentDialog')">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 1c-6.338 0-12 4.226-12 10.007 0 2.05.739 4.063 2.047 5.625.055 1.83-1.023 4.456-1.993 6.368 2.602-.47 6.301-1.508 7.978-2.536 9.236 2.247 15.968-3.405 15.968-9.457 0-5.812-5.701-10.007-12-10.007zm-5 11.5c-.829 0-1.5-.671-1.5-1.5s.671-1.5 1.5-1.5 1.5.671 1.5 1.5-.671 1.5-1.5 1.5zm5 0c-.829 0-1.5-.671-1.5-1.5s.671-1.5 1.5-1.5 1.5.671 1.5 1.5-.671 1.5-1.5 1.5zm5 0c-.828 0-1.5-.671-1.5-1.5s.672-1.5 1.5-1.5c.829 0 1.5.671 1.5 1.5s-.671 1.5-1.5 1.5z"/></svg>
+            </button>
+            <dialog id="commentDialog" class="dialog p-5 gap-3">
+                <span class="text-center color2 backgroundColor2 mb-3">Feedback</span>
+                <div class="flex flex-col justify-center h-full gap-3">
+                    <div class="flex flex-row justify-center items-center gap-3">
+                        <span class="w-1/6">Name</span>
+                        <input class="w-full color2 backgroundColor2 p-1 rounded" type="text">
+                    </div>
+                    <div class="flex flex-row justify-center items-center gap-3">
+                        <span class="w-1/6">Email</span>
+                        <input class="w-full color2 backgroundColor2 p-1 rounded" type="text">
+                    </div>
+                    <div class="flex flex-col gap-1">
+                        <span>Feedback</span>
+                        <textarea id="commentTextArea" class="w-full p-1 backgroundColor4" rows="4" cols="40" style="resize: none;"></textarea>
+                    </div>
+
+                    <div class="flex flex-row justify-end gap-3">
+                        <button class="color1 p-2 rounded-lg" onclick="closeDialog('commentDialog')">Cancel</button>
+                        <button class="color2 backgroundColor2 p-2 rounded-lg" onclick="sendComment()">Send</button>
+                    </div>
+                </div>
+            </dialog>
+        </div>
+        <table id="table" class="my-5">
+            <thead class="backgroundColor2 color2">
+                <tr>
+                    <th class="px-4 py-2">
+                        <div class="flex justify-start items-center gap-1">
+                            <span>Name</span>
+                            <button class="color2 backgroundColor2 rounded-lg">
+                                <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round"
+                                    stroke-miterlimit="2" width="24" height="24" viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="m21 3.998c0-.478-.379-1-1-1h-16c-.62 0-1 .519-1 1v16c0 .621.52 1 1 1h16c.478 0 1-.379 1-1zm-8.991 6.932 2.717-2.718c.146-.146.338-.219.53-.219.405 0 .751.325.751.75 0 .193-.073.384-.219.531l-2.718 2.717 2.728 2.728c.147.147.22.339.22.531 0 .427-.349.75-.75.75-.192 0-.384-.073-.531-.219l-2.728-2.728-2.728 2.728c-.146.146-.339.219-.531.219-.401 0-.75-.323-.75-.75 0-.192.073-.384.22-.531l2.728-2.728-2.722-2.722c-.146-.147-.219-.338-.219-.531 0-.425.346-.749.75-.749.192 0 .384.073.53.219z"
+                                        fill-rule="nonzero" />
+                                </svg>
+                            </button>
+                        </div>
+                    </th>
+                    <th class="px-4 py-2">
+                        <div class="flex justify-start items-center gap-1">
+                            <span>Origin</span>
+                            <button class="color2 backgroundColor2 rounded-lg">
+                                <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round"
+                                    stroke-miterlimit="2" width="24" height="24" viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="m21 3.998c0-.478-.379-1-1-1h-16c-.62 0-1 .519-1 1v16c0 .621.52 1 1 1h16c.478 0 1-.379 1-1zm-8.991 6.932 2.717-2.718c.146-.146.338-.219.53-.219.405 0 .751.325.751.75 0 .193-.073.384-.219.531l-2.718 2.717 2.728 2.728c.147.147.22.339.22.531 0 .427-.349.75-.75.75-.192 0-.384-.073-.531-.219l-2.728-2.728-2.728 2.728c-.146.146-.339.219-.531.219-.401 0-.75-.323-.75-.75 0-.192.073-.384.22-.531l2.728-2.728-2.722-2.722c-.146-.147-.219-.338-.219-.531 0-.425.346-.749.75-.749.192 0 .384.073.53.219z"
+                                        fill-rule="nonzero" />
+                                </svg>
+                            </button>
+                        </div>
+                    </th>
+                    <th class="px-4 py-2">
+                        <div class="flex justify-start items-center gap-1">
+                            <span>Action</span>
+                            <button class="color2 backgroundColor2 rounded-lg">
+                                <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round"
+                                    stroke-miterlimit="2" width="24" height="24" viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="m21 3.998c0-.478-.379-1-1-1h-16c-.62 0-1 .519-1 1v16c0 .621.52 1 1 1h16c.478 0 1-.379 1-1zm-8.991 6.932 2.717-2.718c.146-.146.338-.219.53-.219.405 0 .751.325.751.75 0 .193-.073.384-.219.531l-2.718 2.717 2.728 2.728c.147.147.22.339.22.531 0 .427-.349.75-.75.75-.192 0-.384-.073-.531-.219l-2.728-2.728-2.728 2.728c-.146.146-.339.219-.531.219-.401 0-.75-.323-.75-.75 0-.192.073-.384.22-.531l2.728-2.728-2.722-2.722c-.146-.147-.219-.338-.219-.531 0-.425.346-.749.75-.749.192 0 .384.073.53.219z"
+                                        fill-rule="nonzero" />
+                                </svg>
+                            </button>
+                        </div>
+                    </th>
+                    <th class="px-4 py-2">
+                        <div class="flex justify-start items-center gap-1">
+                            <span>Administration</span>
+                            <button class="color2 backgroundColor2 rounded-lg">
+                                <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round"
+                                    stroke-miterlimit="2" width="24" height="24" viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="m21 3.998c0-.478-.379-1-1-1h-16c-.62 0-1 .519-1 1v16c0 .621.52 1 1 1h16c.478 0 1-.379 1-1zm-8.991 6.932 2.717-2.718c.146-.146.338-.219.53-.219.405 0 .751.325.751.75 0 .193-.073.384-.219.531l-2.718 2.717 2.728 2.728c.147.147.22.339.22.531 0 .427-.349.75-.75.75-.192 0-.384-.073-.531-.219l-2.728-2.728-2.728 2.728c-.146.146-.339.219-.531.219-.401 0-.75-.323-.75-.75 0-.192.073-.384.22-.531l2.728-2.728-2.722-2.722c-.146-.147-.219-.338-.219-.531 0-.425.346-.749.75-.749.192 0 .384.073.53.219z"
+                                        fill-rule="nonzero" />
+                                </svg>
+                            </button>
+                        </div>
+                    </th>
+                    <th class="px-4 py-2">
+                        <div class="flex justify-start items-center gap-1">
+                            <span>Legal</span>
+                            <button class="color2 backgroundColor2 rounded-lg">
+                                <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round"
+                                    stroke-miterlimit="2" width="24" height="24" viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="m21 3.998c0-.478-.379-1-1-1h-16c-.62 0-1 .519-1 1v16c0 .621.52 1 1 1h16c.478 0 1-.379 1-1zm-8.991 6.932 2.717-2.718c.146-.146.338-.219.53-.219.405 0 .751.325.751.75 0 .193-.073.384-.219.531l-2.718 2.717 2.728 2.728c.147.147.22.339.22.531 0 .427-.349.75-.75.75-.192 0-.384-.073-.531-.219l-2.728-2.728-2.728 2.728c-.146.146-.339.219-.531.219-.401 0-.75-.323-.75-.75 0-.192.073-.384.22-.531l2.728-2.728-2.722-2.722c-.146-.147-.219-.338-.219-.531 0-.425.346-.749.75-.749.192 0 .384.073.53.219z"
+                                        fill-rule="nonzero" />
+                                </svg>
+                            </button>
+                        </div>
+                    </th>
+                    <th class="px-4 py-2">
+                        <div class="flex justify-start items-center gap-1">
+                            <span>S.E. Probability</span>
+                            <button class="color2 backgroundColor2 rounded-lg">
+                                <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round"
+                                    stroke-miterlimit="2" width="24" height="24" viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="m21 3.998c0-.478-.379-1-1-1h-16c-.62 0-1 .519-1 1v16c0 .621.52 1 1 1h16c.478 0 1-.379 1-1zm-8.991 6.932 2.717-2.718c.146-.146.338-.219.53-.219.405 0 .751.325.751.75 0 .193-.073.384-.219.531l-2.718 2.717 2.728 2.728c.147.147.22.339.22.531 0 .427-.349.75-.75.75-.192 0-.384-.073-.531-.219l-2.728-2.728-2.728 2.728c-.146.146-.339.219-.531.219-.401 0-.75-.323-.75-.75 0-.192.073-.384.22-.531l2.728-2.728-2.722-2.722c-.146-.147-.219-.338-.219-.531 0-.425.346-.749.75-.749.192 0 .384.073.53.219z"
+                                        fill-rule="nonzero" />
+                                </svg>
+                            </button>
+                        </div>
+                    </th>
+                    <th class="px-4 py-2">
+                        <div class="flex justify-start items-center gap-1">
+                            <span>S.E. Severity</span>
+                            <button class="color2 backgroundColor2 rounded-lg">
+                                <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round"
+                                    stroke-miterlimit="2" width="24" height="24" viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="m21 3.998c0-.478-.379-1-1-1h-16c-.62 0-1 .519-1 1v16c0 .621.52 1 1 1h16c.478 0 1-.379 1-1zm-8.991 6.932 2.717-2.718c.146-.146.338-.219.53-.219.405 0 .751.325.751.75 0 .193-.073.384-.219.531l-2.718 2.717 2.728 2.728c.147.147.22.339.22.531 0 .427-.349.75-.75.75-.192 0-.384-.073-.531-.219l-2.728-2.728-2.728 2.728c-.146.146-.339.219-.531.219-.401 0-.75-.323-.75-.75 0-.192.073-.384.22-.531l2.728-2.728-2.722-2.722c-.146-.147-.219-.338-.219-.531 0-.425.346-.749.75-.749.192 0 .384.073.53.219z"
+                                        fill-rule="nonzero" />
+                                </svg>
+                            </button>
+                        </div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </main>
+</body>
+<script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.6/xlsx.full.min.js"></script> -->
+<script src="../js/index.js"></script>
+
+</html>
