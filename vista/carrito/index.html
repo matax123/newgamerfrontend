@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link href="../styles/styles.css" rel="stylesheet">
+    <link href="../../styles/styles.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="../js/beforeLoad.js"></script>
+    <script src="../../js/beforeLoad.js"></script>
 </head>
 
 <body class="preload" data-spy="#scroll" data-target="#nav" data-offset="20">
@@ -48,14 +48,16 @@
                             fill-rule="nonzero" />
                     </svg>
                     <button class="shopping-cart relative m-0 p-0 flex flex-row justify-center items-center">
-                        <svg class="color1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <svg class="color1" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                            viewBox="0 0 24 24">
                             <path
                                 d="M10 19.5c0 .829-.672 1.5-1.5 1.5s-1.5-.671-1.5-1.5c0-.828.672-1.5 1.5-1.5s1.5.672 1.5 1.5zm3.5-1.5c-.828 0-1.5.671-1.5 1.5s.672 1.5 1.5 1.5 1.5-.671 1.5-1.5c0-.828-.672-1.5-1.5-1.5zm1.336-5l1.977-7h-16.813l2.938 7h11.898zm4.969-10l-3.432 12h-12.597l.839 2h13.239l3.474-12h1.929l.743-2h-4.195z" />
                         </svg>
-                        <span id="cartQuantity" class="hidden absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2 bg-red-500 rounded-full text-white text-xs font-bold w-6 h-6 flex items-center justify-center">
+                        <span id="cartQuantity"
+                            class="hidden absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2 bg-red-500 rounded-full text-white text-xs font-bold w-6 h-6 flex items-center justify-center">
                             0
                         </span>
-                    </button>                    
+                    </button>
                 </div>
             </header>
             <hr class="mt-5">
@@ -77,39 +79,43 @@
     </section> -->
     <section class="py-10">
         <div class="container mx-auto">
-            <div class="product grid grid-cols-2 gap-8">
-                <div class="productImage relative w-full h-48 overflow-hidden" style="padding-top: 100%;">
-                    <img src="../img/006.avif" class="absolute inset-0 w-full h-full object-cover">
+            <div class="grid grid-cols-2 gap-8">
+                <div id="items gap-4">
+                    <div class="item flex flex-row justify-between p-4 backgroundColor1 max-h-[160px]">
+                        <div class="itemImage relative w-32" style="padding-top: 100%;">
+                            <img src="../../img/006.avif" class="w-32 h-32 absolute inset-0 object-cover p-0 m-0">
+                        </div>
+                        <div class="grid grid-cols-2 grid-rows-[44px,12px] w-[calc(100%-9rem)]">
+                            <span >titulo</span>
+                            <div class="flex flex-row justify-end">
+                                <svg class="fill-white" clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m4.015 5.494h-.253c-.413 0-.747-.335-.747-.747s.334-.747.747-.747h5.253v-1c0-.535.474-1 1-1h4c.526 0 1 .465 1 1v1h5.254c.412 0 .746.335.746.747s-.334.747-.746.747h-.254v15.435c0 .591-.448 1.071-1 1.071-2.873 0-11.127 0-14 0-.552 0-1-.48-1-1.071zm14.5 0h-13v15.006h13zm-4.25 2.506c-.414 0-.75.336-.75.75v8.5c0 .414.336.75.75.75s.75-.336.75-.75v-8.5c0-.414-.336-.75-.75-.75zm-4.5 0c-.414 0-.75.336-.75.75v8.5c0 .414.336.75.75.75s.75-.336.75-.75v-8.5c0-.414-.336-.75-.75-.75zm3.75-4v-.5h-3v.5z" fill-rule="nonzero"/></svg>
+                            </div>
+                            <div class="productInCart mt-3 flex flex-row justify-start items-center gap-5">
+                                <button class="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded">
+                                    +1
+                                </button>
+                                <span class="quanity font-bold">1</span>
+                                <button class="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded" >
+                                    -1
+                                </button>
+                            </div>
+                            <span class="text-right">$1000</span>
+                        </div>
+                    </div>
                 </div>
                 <div class="productInfo">
                     <h1 class="text-2xl font-bold">Nvidia RTX 3090</h1>
-                    <p class="text-xl text-green-600 mt-2">$1,499.99</p>
-                    <p class="text-sm text-gray-600 mt-1">Stock Left: <span class="font-semibold text-red-600">12</span></p>
-                    <p class="mt-4">
-                        The Nvidia RTX 3090 is a high-end graphics card designed for gaming and creative professionals, offering exceptional performance and advanced features.
-                    </p>
-    
-                    <h2 class="mt-6 text-lg font-semibold">Specifications:</h2>
-                    <ul class="list-disc list-inside mt-2">
-                        <li>GPU Architecture: Ampere</li>
-                        <li>CUDA Cores: 10,496</li>
-                        <li>Memory: 24GB GDDR6X</li>
-                        <li>Ray Tracing Cores: 2nd Generation</li>
-                        <li>DLSS: Yes</li>
-                    </ul>
-    
 
                 </div>
             </div>
         </div>
     </section>
-    
-    
+
+
 
 </body>
 <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.6/xlsx.full.min.js"></script> -->
-<script src="../js/index.js"></script>
 <script src="./index.js"></script>
 
 </html>

@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link href="../styles/styles.css" rel="stylesheet">
+    <link href="../../styles/styles.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="../js/beforeLoad.js"></script>
+    <script src="../../js/beforeLoad.js"></script>
 </head>
 
 <body class="preload" data-spy="#scroll" data-target="#nav" data-offset="20">
@@ -63,18 +63,52 @@
     </main>
 
 
+    <!-- <section class="py-10">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-2">
+                <div class="relative w-full h-48 overflow-hidden" style="padding-top: 100%;">
+                    <img src="../img/006.avif" class="absolute inset-0 w-full h-full object-cover">
+                </div>
+                <div>
+                    <h1>Nvidia RTX 3090</h1>
+                </div>
+            </div>
+        </div>
+    </section> -->
     <section class="py-10">
         <div class="container mx-auto">
-            <h2 class="text-3xl font-bold text-center mb-8">PC Parts Collection</h2>
-            <div id="product-grid" class="p-5 grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-6">
+            <div class="product grid grid-cols-2 gap-8">
+                <div class="productImage relative w-full h-48 overflow-hidden" style="padding-top: 100%;">
+                    <img src="../img/006.avif" class="absolute inset-0 w-full h-full object-cover">
+                </div>
+                <div class="productInfo">
+                    <h1 class="text-2xl font-bold">Nvidia RTX 3090</h1>
+                    <p class="text-xl text-green-600 mt-2">$1,499.99</p>
+                    <p class="text-sm text-gray-600 mt-1">Stock Left: <span class="font-semibold text-red-600">12</span></p>
+                    <p class="mt-4">
+                        The Nvidia RTX 3090 is a high-end graphics card designed for gaming and creative professionals, offering exceptional performance and advanced features.
+                    </p>
+    
+                    <h2 class="mt-6 text-lg font-semibold">Specifications:</h2>
+                    <ul class="list-disc list-inside mt-2">
+                        <li>GPU Architecture: Ampere</li>
+                        <li>CUDA Cores: 10,496</li>
+                        <li>Memory: 24GB GDDR6X</li>
+                        <li>Ray Tracing Cores: 2nd Generation</li>
+                        <li>DLSS: Yes</li>
+                    </ul>
+    
+
+                </div>
             </div>
         </div>
     </section>
+    
+    
 
 </body>
 <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.6/xlsx.full.min.js"></script> -->
-<script src="../js/index.js"></script>
 <script src="./index.js"></script>
 
 </html>

@@ -1,4 +1,7 @@
 // global variables
+
+let backendUrl = 'https://localhost:5000';
+
 function changeDayTime() {
     const dayIcon = document.getElementById('dayIcon');
     const nightIcon = document.getElementById('nightIcon');
@@ -16,16 +19,6 @@ function changeDayTime() {
         document.documentElement.setAttribute('theme', 'light');
         localStorage.setItem('dayTime', 'day');
     }
-}
-
-window.onload = async function () {
-    var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-
-    if (dayTime == 'day') dayIcon.classList.remove('hidden');
-    else nightIcon.classList.remove('hidden');
-
-    document.getElementById("loading").close();
-    document.querySelector('.preload').classList.remove('preload');
 }
 
 // secondary functions
@@ -61,6 +54,8 @@ function customCompare(a, b) {
             : bText.localeCompare(aText, undefined, { numeric: true });
     }
 }
+
+//HTML funcitions
 
 function closeDialogWhenClickedOutside(dialog) {
     dialog.addEventListener('mousedown', (event) => {
@@ -131,13 +126,13 @@ function refreshProductInCart() {
     productsCards.forEach(card => {
         card.querySelector('.productNotInCard').classList.add('hidden');
         card.querySelector('.productInCart').classList.add('hidden');
-        if(!productsIds.includes(parseInt(card.dataset.productId))) card.querySelector('.productNotInCard').classList.remove('hidden');
+        if (!productsIds.includes(parseInt(card.dataset.productId))) card.querySelector('.productNotInCard').classList.remove('hidden');
         else {
             card.querySelector('.productInCart').classList.remove('hidden');
             card.querySelector('.quanity').innerText = productsIds.filter(id => id == parseInt(card.dataset.productId)).length;
         }
     });
-    if(productsQuantity > 0) {
+    if (productsQuantity > 0) {
         cartQuantity = document.getElementById('cartQuantity');
         cartQuantity.innerText = productsQuantity;
         cartQuantity.classList.remove('hidden');
@@ -150,30 +145,77 @@ function clearCart() {
     loadProducts();
 }
 
-productsLists = [
-    {
-        id: 1,
-        title: 'RTX 3080',
-        category: 'Graphics Card',
-        price: 699,
-        img: '../img/007.jpg'
-    },
-    {
-        id: 2,
-        title: 'RTX 3090',
-        category: 'Graphics Card',
-        price: 1499,
-        img: '../img/006.avif'
-    }
-]
+let selectCategory = document.getElementById('selectCategory');
+function onCategoryChange(event) {
+    console.log(event.target.value);
+    //change url
+    window.location.href = '?category=' + event.target.value;
+}
+selectCategory.addEventListener('change', onCategoryChange);
 
-function loadProducts() {
+//END: HTML functions
+
+
+async function loadProducts() {
     let productGrid = document.getElementById('product-grid');
     productGrid.innerHTML = '';
+
+    //fetch products
+    productsLists = [];
+    let response = await fetch(backendUrl + '/GetProducts')
+    if(response.status != 200) {
+        console.log('Error fetching products');
+        return;
+    }
+    let json = await response.json();
+    productsLists = json.products;
+
+    console.log(productsLists);
     productsLists.forEach(product => {
-        productGrid.innerHTML += createProductElement(product.id, product.title, product.category, product.price, product.img, product.quantity);
+        productGrid.innerHTML += createProductElement(product.id, product.name, product.category, product.price, product.imageUrl, product.quantity);
     });
     refreshProductInCart();
 }
 
 loadProducts();
+
+category = decodeURIComponent(window.location.search.split('=')[1])
+
+function createCategoryElement(category) {
+    return html = `
+        <option>${category}</option>
+    `
+}
+
+categories = []
+async function loadCategories() {
+    // selectCategory.innerHTML = '';
+
+    //fetch categories
+    let response = await fetch(backendUrl + '/GetCategories')
+    if(response.status != 200) {
+        console.log('Error fetching categories');
+        return;
+    }
+    let json = await response.json();
+    categories = json.categories.map(item => item.name);
+    categories.forEach(category => {
+        selectCategory.innerHTML += createCategoryElement(category);
+    });
+    if(categories.includes(category)) selectCategory.value = category;
+    else {
+        selectCategory.value = 'TODO';
+    }
+}
+
+loadCategories();
+
+window.onload = async function () {
+    var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+    if (dayTime == 'day') dayIcon.classList.remove('hidden');
+    else nightIcon.classList.remove('hidden');
+
+    document.getElementById("loading").close();
+    document.querySelector('.preload').classList.remove('preload');
+}

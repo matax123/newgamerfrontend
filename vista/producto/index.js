@@ -1,7 +1,4 @@
 // global variables
-
-let backendUrl = 'https://192.168.0.200:5000';
-
 function changeDayTime() {
     const dayIcon = document.getElementById('dayIcon');
     const nightIcon = document.getElementById('nightIcon');
@@ -31,7 +28,7 @@ window.onload = async function () {
     document.querySelector('.preload').classList.remove('preload');
 }
 
-// secondary functions
+//Start of Secondary functions
 
 function startsWithNumber(str) {
     return /^\d/.test(str);
@@ -65,7 +62,7 @@ function customCompare(a, b) {
     }
 }
 
-//HTML funcitions
+//End of Secondary functions
 
 function closeDialogWhenClickedOutside(dialog) {
     dialog.addEventListener('mousedown', (event) => {
@@ -89,15 +86,8 @@ function closeDialog(id) {
     dialog.close();
 }
 
-function createProductElement(id, title, category, price, img, quantity) {
+function createProductButton(id, title, category, price, img, quantity) {
     return html = `
-        <div class="rounded-lg product-card" data-product-id="${id}">
-            <div class="relative w-full h-48 overflow-hidden" style="padding-top: 100%;">
-                <img src="${img}" alt="Graphics Card" class="absolute inset-0 w-full h-full object-cover">
-            </div>
-            <h2 class="text-xl font-semibold pt-2">${title}</h2>
-            <p class="text-gray-400">${category}</p>
-            <p class="text-lg mt-2">$${price}</p>
             <button class="productNotInCard hidden mt-3 bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded" onclick="addProduct(${id})">
                 Add to Cart
             </button>
@@ -110,7 +100,6 @@ function createProductElement(id, title, category, price, img, quantity) {
                     -1
                 </button>
             </div>
-        </div>
     `
 }
 
@@ -123,25 +112,22 @@ function addProduct(productId) {
 
 function removeProduct(productId) {
     productsIds = JSON.parse(localStorage.getItem('productsIds')) || [];
-    //remove first occurence of productId
     productsIds.splice(productsIds.indexOf(productId), 1);
     localStorage.setItem('productsIds', JSON.stringify(productsIds));
     refreshProductInCart();
 }
 
 function refreshProductInCart() {
-    productsCards = document.querySelectorAll('.product-card');
-    productsIds = JSON.parse(localStorage.getItem('productsIds')) || [];
+    let productInfo = document.querySelector('.productInfo');
+    let productsIds = JSON.parse(localStorage.getItem('productsIds')) || [];
     productsQuantity = productsIds.length;
-    productsCards.forEach(card => {
-        card.querySelector('.productNotInCard').classList.add('hidden');
-        card.querySelector('.productInCart').classList.add('hidden');
-        if (!productsIds.includes(parseInt(card.dataset.productId))) card.querySelector('.productNotInCard').classList.remove('hidden');
-        else {
-            card.querySelector('.productInCart').classList.remove('hidden');
-            card.querySelector('.quanity').innerText = productsIds.filter(id => id == parseInt(card.dataset.productId)).length;
-        }
-    });
+    productInfo.querySelector('.productNotInCard').classList.add('hidden');
+    productInfo.querySelector('.productInCart').classList.add('hidden');
+    if (!productsIds.includes(parseInt(productDB.id))) productInfo.querySelector('.productNotInCard').classList.remove('hidden');
+    else {
+        productInfo.querySelector('.productInCart').classList.remove('hidden');
+        productInfo.querySelector('.quanity').innerText = productsIds.filter(id => id == parseInt(productDB.id)).length;
+    }
     if (productsQuantity > 0) {
         cartQuantity = document.getElementById('cartQuantity');
         cartQuantity.innerText = productsQuantity;
@@ -155,59 +141,21 @@ function clearCart() {
     loadProducts();
 }
 
-let categoriesOpened = false;
-document.onclick = function (event) {
-    if (event.target.id === 'categoryButton' || event.target.parentElement.id === 'categoryButton') openCategories();
-    else if (event.target.id !== 'categories') closeCategories();
+productDB = {
+    id: 1,
+    title: 'RTX 3080',
+    category: 'Graphics Card',
+    price: 699,
+    img: '../img/007.jpg'
 }
 
-function openCategories() {
-    let categories = document.getElementById('categories');
-    categories.classList.toggle('hidden');
-    categoriesOpened = true;
-}
 
-function closeCategories() {
-    let categories = document.getElementById('categories');
-    categories.classList.toggle('hidden');
-    categoriesOpened = false;
-}
-
-//END: HTML functions
-
-
-
-async function loadProducts() {
-    let productGrid = document.getElementById('product-grid');
-    productGrid.innerHTML = '';
-
-    //fetch products
-    productsLists = [];
-    let response = await fetch(backendUrl + '/GetProducts')
-    if(response.status != 200) {
-        console.log('Error fetching products');
-        return;
-    }
-    let json = await response.json();
-    productsLists = json.products;
-
-    console.log(productsLists);
-    productsLists.forEach(product => {
-        productGrid.innerHTML += createProductElement(product.id, product.title, product.category, product.price, product.img, product.quantity);
-    });
+function loadProduct() {
+    let product = document.querySelector('.product');
+    let productImage = document.querySelector('.productImage');
+    let productInfo = document.querySelector('.productInfo');
+    productInfo.innerHTML += createProductButton(productDB.id, productDB.title, productDB.category, productDB.price, productDB.img, productDB.quantity);
     refreshProductInCart();
 }
 
-loadProducts();
-
-categories = []
-
-function loadCategories() {
-    let categoriesList = document.getElementById('categoriesList');
-    categoriesList.innerHTML = '';
-    categories.forEach(category => {
-        categoriesList.innerHTML += createCategoryElement(category);
-    });
-}
-
-// loadCategories();
+loadProduct();
