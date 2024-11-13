@@ -5,7 +5,7 @@
     --colorBG1: rgb(250, 250, 250);
     --colorBG2: rgb(248, 135, 6);
     --colorBG3: rgb(255, 255, 255);
-    --colorBG4: rgb(255,255,255);
+    --colorBG4: rgb(255, 255, 255);
     --boxShadow1: 0px 5px 5px 0px rgba(0, 0, 0, 0.1);
 }
 
@@ -20,7 +20,7 @@
     --colorBG3: rgb(100, 100, 100);
     --colorBG4: rgb(80, 80, 80);
     --boxShadow1: 0px 5px 5px 0px rgba(0, 0, 0, 0.2);
-    
+
     dialog::backdrop {
         background-color: rgba(0, 0, 0, 0.5);
     }
@@ -29,6 +29,21 @@
 body {
     background-color: var(--colorBG3);
     color: var(--color3);
+}
+
+h1 {
+    font-size: 3rem !important;
+    font-weight: 500 !important;
+}
+
+h2 {
+    font-size: 1.5rem !important;
+    font-weight: 500 !important;
+}
+
+li::before {
+    content: "•";
+    margin-right: 8px;
 }
 
 .color1 {
@@ -41,17 +56,17 @@ body {
     fill: var(--color2);
 }
 
-.color3{
+.color3 {
     color: var(--color3);
     fill: var(--color3);
 }
 
-.color4{
+.color4 {
     color: var(--color4);
     fill: var(--color4);
 }
 
-.color5{
+.color5 {
     color: var(--color5);
     fill: var(--color5);
 }
@@ -64,7 +79,7 @@ body {
     background-color: var(--colorBG2);
 }
 
-.backgroundColor4{
+.backgroundColor4 {
     background-color: var(--colorBG4);
 }
 
@@ -114,13 +129,13 @@ body {
     opacity: 0;
     visibility: hidden;
     z-index: 10;
-    background-color: rgba(255,255,255, 0.5);
+    background-color: rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(5px);
     color: var(--color3);
 }
 
 :root[theme="dark"] #loading {
-    background-color: rgba(0,0,0, 0.33);
+    background-color: rgba(0, 0, 0, 0.33);
 }
 
 .preload {
@@ -132,8 +147,9 @@ table {
     width: 100%;
 }
 
-table thead{
-    white-space: nowrap;  /* Prevent wrapping inside the container */
+table thead {
+    white-space: nowrap;
+    /* Prevent wrapping inside the container */
     height: 60px;
 }
 
@@ -145,7 +161,7 @@ table tr:nth-child(even) {
     background-color: var(--colorBG1);
 }
 
-.tableContainer{
+.tableContainer {
     min-width: 100%;
     overflow-x: auto;
     box-shadow: var(--boxShadow1);
@@ -156,12 +172,12 @@ table tr:nth-child(even) {
     .tableContainer::-webkit-scrollbar {
         width: 12px;
     }
-    
+
     .tableContainer::-webkit-scrollbar-track {
-        background: rgb(255,255,255);
+        background: rgb(255, 255, 255);
         border-radius: 0px 0px 10px 10px;
     }
-    
+
     .tableContainer::-webkit-scrollbar-thumb {
         background-color: rgb(220, 220, 220);
         border-radius: 0px 0px 10px 10px;
@@ -172,12 +188,12 @@ table tr:nth-child(even) {
     .tableContainer::-webkit-scrollbar {
         width: 12px;
     }
-    
+
     .tableContainer::-webkit-scrollbar-track {
-        background: rgb(70,70,70);
+        background: rgb(70, 70, 70);
         border-radius: 0px 0px 10px 10px;
     }
-    
+
     .tableContainer::-webkit-scrollbar-thumb {
         background-color: rgb(89, 89, 89);
         border-radius: 0px 0px 10px 10px;

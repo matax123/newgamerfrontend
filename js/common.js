@@ -17,6 +17,10 @@ function changeDayTime() {
     }
 }
 
+//Global variables
+let backendUrl = 'https://localhost:5000';
+
+//Load function
 window.onload = async function () {
     var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
@@ -25,6 +29,13 @@ window.onload = async function () {
 
     document.getElementById("loading").close();
     document.querySelector('.preload').classList.remove('preload');
+
+    console.log(JSON.parse(localStorage.getItem('productsIds'))?.length)
+
+    let cartQuantity = document.getElementById('cartQuantity');
+    let quantity = JSON.parse(localStorage.getItem('productsIds'))?.length || 0;
+    cartQuantity.innerText = quantity;
+    if (quantity > 0) cartQuantity.classList.remove('hidden');
 }
 
 // secondary functions

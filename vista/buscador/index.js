@@ -1,89 +1,12 @@
-// global variables
-
-let backendUrl = 'https://localhost:5000';
-
-function changeDayTime() {
-    const dayIcon = document.getElementById('dayIcon');
-    const nightIcon = document.getElementById('nightIcon');
-    if (dayTime == 'day') {
-        dayTime = 'night';
-        dayIcon.classList.add('hidden');
-        nightIcon.classList.remove('hidden');
-        document.documentElement.setAttribute('theme', 'dark');
-        localStorage.setItem('dayTime', 'night');
-    }
-    else {
-        dayTime = 'day';
-        dayIcon.classList.remove('hidden');
-        nightIcon.classList.add('hidden');
-        document.documentElement.setAttribute('theme', 'light');
-        localStorage.setItem('dayTime', 'day');
-    }
-}
-
-// secondary functions
-
-function startsWithNumber(str) {
-    return /^\d/.test(str);
-}
-
-function customCompare(a, b) {
-    const aText = a[orderSelectValue];
-    const bText = b[orderSelectValue];
-    const aStartsWithNumber = /^\d/.test(aText);
-    const bStartsWithNumber = /^\d/.test(bText);
-
-    if (aStartsWithNumber && !bStartsWithNumber && orderSelectDirection == 'asc') {
-        return 1; // aText starts with a number, should come after bText
-    }
-    if (aStartsWithNumber && !bStartsWithNumber && orderSelectDirection == 'desc') {
-        return -1; // aText starts with a number, should come after bText
-    }
-    if (!aStartsWithNumber && bStartsWithNumber && orderSelectDirection == 'asc') {
-        return -1; // bText starts with a number, should come after aText
-    }
-    if (!aStartsWithNumber && bStartsWithNumber && orderSelectDirection == 'desc') {
-        return 1; // bText starts with a number, should come after aText
-    }
-    else {
-        // If both or neither start with a number, compare normally
-        if (aText == null) console.log('aText is null');
-        if (bText == null) console.log('bText is null');
-        return orderSelectDirection === 'asc'
-            ? aText.localeCompare(bText, undefined, { numeric: true })
-            : bText.localeCompare(aText, undefined, { numeric: true });
-    }
-}
-
-//HTML funcitions
-
-function closeDialogWhenClickedOutside(dialog) {
-    dialog.addEventListener('mousedown', (event) => {
-        const rect = dialog.getBoundingClientRect();
-        const isInDialog = event.clientX >= rect.left && event.clientX <= rect.right &&
-            event.clientY >= rect.top && event.clientY <= rect.bottom;
-
-        if (!isInDialog) {
-            dialog.close();
-        }
-    });
-}
-
-function openDialog(id) {
-    let dialog = document.getElementById(id);
-    dialog.showModal();
-}
-
-function closeDialog(id) {
-    let dialog = document.getElementById(id);
-    dialog.close();
-}
+//HTML functions
 
 function createProductElement(id, title, category, price, img, quantity) {
     return html = `
         <div class="rounded-lg product-card" data-product-id="${id}">
             <div class="relative w-full h-48 overflow-hidden" style="padding-top: 100%;">
-                <img src="${img}" alt="Graphics Card" class="absolute inset-0 w-full h-full object-cover">
+                <a href="../../vista/producto/index.html?id=${id}" class="absolute inset-0">
+                    <img src="${img}" alt="Graphics Card" class="absolute inset-0 w-full h-full object-cover">
+                </a>
             </div>
             <h2 class="text-xl font-semibold pt-2">${title}</h2>
             <p class="text-gray-400">${category}</p>
@@ -156,9 +79,10 @@ selectCategory.addEventListener('change', onCategoryChange);
 //END: HTML functions
 
 
+//Load functions
+
 async function loadProducts() {
     let productGrid = document.getElementById('product-grid');
-    productGrid.innerHTML = '';
 
     //fetch products
     productsLists = [];
@@ -189,8 +113,6 @@ function createCategoryElement(category) {
 
 categories = []
 async function loadCategories() {
-    // selectCategory.innerHTML = '';
-
     //fetch categories
     let response = await fetch(backendUrl + '/GetCategories')
     if(response.status != 200) {
@@ -209,13 +131,3 @@ async function loadCategories() {
 }
 
 loadCategories();
-
-window.onload = async function () {
-    var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-
-    if (dayTime == 'day') dayIcon.classList.remove('hidden');
-    else nightIcon.classList.remove('hidden');
-
-    document.getElementById("loading").close();
-    document.querySelector('.preload').classList.remove('preload');
-}

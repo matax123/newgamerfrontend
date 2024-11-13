@@ -40,23 +40,31 @@
                     </div>
                 </div>
                 <div class="flex flex-row gap-3">
-                    <svg class="color1" clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round"
+                    <a href="vista/buscador/index.html">
+                        <svg class="color1" clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round"
                         stroke-miterlimit="2" viewBox="0 0 24 24" width="24" height="24"
                         xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="m15.97 17.031c-1.479 1.238-3.384 1.985-5.461 1.985-4.697 0-8.509-3.812-8.509-8.508s3.812-8.508 8.509-8.508c4.695 0 8.508 3.812 8.508 8.508 0 2.078-.747 3.984-1.985 5.461l4.749 4.75c.146.146.219.338.219.531 0 .587-.537.75-.75.75-.192 0-.384-.073-.531-.22zm-5.461-13.53c-3.868 0-7.007 3.14-7.007 7.007s3.139 7.007 7.007 7.007c3.866 0 7.007-3.14 7.007-7.007s-3.141-7.007-7.007-7.007z"
                             fill-rule="nonzero" />
                     </svg>
-                    <svg class="color1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                        <path
-                            d="M10 19.5c0 .829-.672 1.5-1.5 1.5s-1.5-.671-1.5-1.5c0-.828.672-1.5 1.5-1.5s1.5.672 1.5 1.5zm3.5-1.5c-.828 0-1.5.671-1.5 1.5s.672 1.5 1.5 1.5 1.5-.671 1.5-1.5c0-.828-.672-1.5-1.5-1.5zm1.336-5l1.977-7h-16.813l2.938 7h11.898zm4.969-10l-3.432 12h-12.597l.839 2h13.239l3.474-12h1.929l.743-2h-4.195z" />
-                    </svg>
+                    </a>
+                    <a class="shopping-cart relative m-0 p-0 flex flex-row justify-center items-center" href="vista/carrito/index.html">
+                        <svg class="color1" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M10 19.5c0 .829-.672 1.5-1.5 1.5s-1.5-.671-1.5-1.5c0-.828.672-1.5 1.5-1.5s1.5.672 1.5 1.5zm3.5-1.5c-.828 0-1.5.671-1.5 1.5s.672 1.5 1.5 1.5 1.5-.671 1.5-1.5c0-.828-.672-1.5-1.5-1.5zm1.336-5l1.977-7h-16.813l2.938 7h11.898zm4.969-10l-3.432 12h-12.597l.839 2h13.239l3.474-12h1.929l.743-2h-4.195z" />
+                        </svg>
+                        <span id="cartQuantity"
+                            class="hidden absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2 bg-red-500 rounded-full text-white text-xs font-bold w-6 h-6 flex items-center justify-center">
+                            0
+                        </span>
+                    </a>
                 </div>
             </header>
             <hr class="mt-5">
-            <section class="w-full h-full flex flex-column justify-center items-center py-10"
-                style="position: relative; bottom: 50px;">
-                <div class="container h-100 flex flex-col">
+            <section class="w-full h-full flex flex-column justify-center items-center py-10">
+                <div class="container h-100 flex flex-col" style="position: relative; bottom: 50px;">
                     <div class="flex flex-row justify-center items-center gap-5">
                         <div class="flex flex-col gap-12">
                             <span class="text-5xl leading-tight">Encuentra los <b class="color4">mejores</b> <br>
@@ -131,6 +139,6 @@
 </body>
 <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.6/xlsx.full.min.js"></script> -->
-<script src="./js/index.js"></script>
+<script src="./js/common.js"></script>
 
 </html>

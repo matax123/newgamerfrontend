@@ -40,22 +40,26 @@
                     </div>
                 </div>
                 <div class="flex flex-row gap-3">
-                    <svg class="color1" clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round"
+                    <a href="../../vista/buscador/index.html">
+                        <svg class="color1" clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round"
                         stroke-miterlimit="2" viewBox="0 0 24 24" width="24" height="24"
                         xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="m15.97 17.031c-1.479 1.238-3.384 1.985-5.461 1.985-4.697 0-8.509-3.812-8.509-8.508s3.812-8.508 8.509-8.508c4.695 0 8.508 3.812 8.508 8.508 0 2.078-.747 3.984-1.985 5.461l4.749 4.75c.146.146.219.338.219.531 0 .587-.537.75-.75.75-.192 0-.384-.073-.531-.22zm-5.461-13.53c-3.868 0-7.007 3.14-7.007 7.007s3.139 7.007 7.007 7.007c3.866 0 7.007-3.14 7.007-7.007s-3.141-7.007-7.007-7.007z"
                             fill-rule="nonzero" />
                     </svg>
-                    <button class="shopping-cart relative m-0 p-0 flex flex-row justify-center items-center">
-                        <svg class="color1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    </a>
+                    <a class="shopping-cart relative m-0 p-0 flex flex-row justify-center items-center" href="../../vista/carrito/index.html">
+                        <svg class="color1" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                            viewBox="0 0 24 24">
                             <path
                                 d="M10 19.5c0 .829-.672 1.5-1.5 1.5s-1.5-.671-1.5-1.5c0-.828.672-1.5 1.5-1.5s1.5.672 1.5 1.5zm3.5-1.5c-.828 0-1.5.671-1.5 1.5s.672 1.5 1.5 1.5 1.5-.671 1.5-1.5c0-.828-.672-1.5-1.5-1.5zm1.336-5l1.977-7h-16.813l2.938 7h11.898zm4.969-10l-3.432 12h-12.597l.839 2h13.239l3.474-12h1.929l.743-2h-4.195z" />
                         </svg>
-                        <span id="cartQuantity" class="hidden absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2 bg-red-500 rounded-full text-white text-xs font-bold w-6 h-6 flex items-center justify-center">
+                        <span id="cartQuantity"
+                            class="hidden absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2 bg-red-500 rounded-full text-white text-xs font-bold w-6 h-6 flex items-center justify-center">
                             0
                         </span>
-                    </button>                    
+                    </a>            
                 </div>
             </header>
             <hr class="mt-5">
@@ -78,27 +82,14 @@
     <section class="py-10">
         <div class="container mx-auto">
             <div class="product grid grid-cols-2 gap-8">
-                <div class="productImage relative w-full h-48 overflow-hidden" style="padding-top: 100%;">
-                    <img src="../img/006.avif" class="absolute inset-0 w-full h-full object-cover">
+                <div class="relative w-full h-48 overflow-hidden" style="padding-top: 100%;">
+                    <img id="productImage" class="absolute inset-0 w-full h-full object-cover">
                 </div>
                 <div class="productInfo">
-                    <h1 class="text-2xl font-bold">Nvidia RTX 3090</h1>
-                    <p class="text-xl text-green-600 mt-2">$1,499.99</p>
-                    <p class="text-sm text-gray-600 mt-1">Stock Left: <span class="font-semibold text-red-600">12</span></p>
-                    <p class="mt-4">
-                        The Nvidia RTX 3090 is a high-end graphics card designed for gaming and creative professionals, offering exceptional performance and advanced features.
-                    </p>
-    
-                    <h2 class="mt-6 text-lg font-semibold">Specifications:</h2>
-                    <ul class="list-disc list-inside mt-2">
-                        <li>GPU Architecture: Ampere</li>
-                        <li>CUDA Cores: 10,496</li>
-                        <li>Memory: 24GB GDDR6X</li>
-                        <li>Ray Tracing Cores: 2nd Generation</li>
-                        <li>DLSS: Yes</li>
-                    </ul>
-    
-
+                    <h1 id="productTitle" class="color4"></h1>
+                    <p id="productPrice" class="text-xl font-bold text-green-600"></p>
+                    <p>Stock: <span id="productStock"  class="font-semibold"></span></p>
+                    <div id="productDescription" class="mt-4 leading-snug"></div>
                 </div>
             </div>
         </div>
@@ -108,7 +99,9 @@
 
 </body>
 <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.6/xlsx.full.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/gh/MarketingPipeline/Markdown-Tag/markdown-tag.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script> 
+<script src="../../js/common.js"></script>
 <script src="./index.js"></script>
 
 </html>
