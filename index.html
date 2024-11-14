@@ -34,9 +34,9 @@
                         </svg>
                     </button>
                     <div class="flex flex-row px-5 gap-10">
-                        <a href="">DESKTOPS</a>
-                        <a href="">PERIFERICOS</a>
-                        <a href="">NOTEBOOKS</a>
+                        <a href="">INICIO</a>
+                        <a href="/vista/buscador/index.html?category=DESKTOPS">DESKTOPS</a>
+                        <a href="/vista/buscador/index.html?category=NOTEBOOKS">NOTEBOOKS</a>
                     </div>
                 </div>
                 <div class="flex flex-row gap-3">
@@ -49,7 +49,7 @@
                             fill-rule="nonzero" />
                     </svg>
                     </a>
-                    <a class="shopping-cart relative m-0 p-0 flex flex-row justify-center items-center" href="vista/carrito/index.html">
+                    <button class="shopping-cart relative m-0 p-0 flex flex-row justify-center items-center" onclick="onClickShoppingCart('vista/carrito/index.html')">
                         <svg class="color1" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                             viewBox="0 0 24 24">
                             <path
@@ -59,7 +59,7 @@
                             class="hidden absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2 bg-red-500 rounded-full text-white text-xs font-bold w-6 h-6 flex items-center justify-center">
                             0
                         </span>
-                    </a>
+                    </button>
                 </div>
             </header>
             <hr class="mt-5">

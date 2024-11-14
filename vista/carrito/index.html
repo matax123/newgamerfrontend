@@ -34,22 +34,22 @@
                         </svg>
                     </button>
                     <div class="flex flex-row px-5 gap-10">
-                        <a href="">DESKTOPS</a>
-                        <a href="">PERIFERICOS</a>
-                        <a href="">NOTEBOOKS</a>
+                        <a href="../../index.html">INICIO</a>
+                        <a href="/vista/buscador/index.html?category=DESKTOPS">DESKTOPS</a>
+                        <a href="/vista/buscador/index.html?category=NOTEBOOKS">NOTEBOOKS</a>
                     </div>
                 </div>
                 <div class="flex flex-row gap-3">
                     <a href="../../vista/buscador/index.html">
                         <svg class="color1" clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round"
-                        stroke-miterlimit="2" viewBox="0 0 24 24" width="24" height="24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="m15.97 17.031c-1.479 1.238-3.384 1.985-5.461 1.985-4.697 0-8.509-3.812-8.509-8.508s3.812-8.508 8.509-8.508c4.695 0 8.508 3.812 8.508 8.508 0 2.078-.747 3.984-1.985 5.461l4.749 4.75c.146.146.219.338.219.531 0 .587-.537.75-.75.75-.192 0-.384-.073-.531-.22zm-5.461-13.53c-3.868 0-7.007 3.14-7.007 7.007s3.139 7.007 7.007 7.007c3.866 0 7.007-3.14 7.007-7.007s-3.141-7.007-7.007-7.007z"
-                            fill-rule="nonzero" />
-                    </svg>
+                            stroke-miterlimit="2" viewBox="0 0 24 24" width="24" height="24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="m15.97 17.031c-1.479 1.238-3.384 1.985-5.461 1.985-4.697 0-8.509-3.812-8.509-8.508s3.812-8.508 8.509-8.508c4.695 0 8.508 3.812 8.508 8.508 0 2.078-.747 3.984-1.985 5.461l4.749 4.75c.146.146.219.338.219.531 0 .587-.537.75-.75.75-.192 0-.384-.073-.531-.22zm-5.461-13.53c-3.868 0-7.007 3.14-7.007 7.007s3.139 7.007 7.007 7.007c3.866 0 7.007-3.14 7.007-7.007s-3.141-7.007-7.007-7.007z"
+                                fill-rule="nonzero" />
+                        </svg>
                     </a>
-                    <a class="shopping-cart relative m-0 p-0 flex flex-row justify-center items-center">
+                    <button class="shopping-cart relative m-0 p-0 flex flex-row justify-center items-center">
                         <svg class="color1" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                             viewBox="0 0 24 24">
                             <path
@@ -59,7 +59,7 @@
                             class="hidden absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2 bg-red-500 rounded-full text-white text-xs font-bold w-6 h-6 flex items-center justify-center">
                             0
                         </span>
-                    </a>
+                    </button>
                 </div>
             </header>
             <hr class="mt-5">
@@ -81,33 +81,42 @@
     </section> -->
     <section class="py-10">
         <div class="container mx-auto">
+            <h1 class="text-center pb-10">Carrito</h1>
             <div class="grid grid-cols-2 gap-8">
-                <div id="items gap-4">
-                    <div class="item flex flex-row justify-between p-4 backgroundColor1 max-h-[160px]">
-                        <div class="itemImage relative w-32" style="padding-top: 100%;">
-                            <img src="../../img/006.avif" class="w-32 h-32 absolute inset-0 object-cover p-0 m-0">
-                        </div>
-                        <div class="grid grid-cols-2 grid-rows-[44px,12px] w-[calc(100%-9rem)]">
-                            <span >titulo</span>
-                            <div class="flex flex-row justify-end">
-                                <svg class="fill-white" clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m4.015 5.494h-.253c-.413 0-.747-.335-.747-.747s.334-.747.747-.747h5.253v-1c0-.535.474-1 1-1h4c.526 0 1 .465 1 1v1h5.254c.412 0 .746.335.746.747s-.334.747-.746.747h-.254v15.435c0 .591-.448 1.071-1 1.071-2.873 0-11.127 0-14 0-.552 0-1-.48-1-1.071zm14.5 0h-13v15.006h13zm-4.25 2.506c-.414 0-.75.336-.75.75v8.5c0 .414.336.75.75.75s.75-.336.75-.75v-8.5c0-.414-.336-.75-.75-.75zm-4.5 0c-.414 0-.75.336-.75.75v8.5c0 .414.336.75.75.75s.75-.336.75-.75v-8.5c0-.414-.336-.75-.75-.75zm3.75-4v-.5h-3v.5z" fill-rule="nonzero"/></svg>
-                            </div>
-                            <div class="productInCart mt-3 flex flex-row justify-start items-center gap-5">
-                                <button class="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded">
-                                    +1
-                                </button>
-                                <span class="quanity font-bold">1</span>
-                                <button class="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded" >
-                                    -1
-                                </button>
-                            </div>
-                            <span class="text-right">$1000</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="productInfo">
-                    <h1 class="text-2xl font-bold">Nvidia RTX 3090</h1>
+                <div id="product-grid" class="flex flex-col gap-1">
 
+                </div>
+                <div id="total" class="flex flex-col gap-3 pt-2">
+                    <span class="underline">Entrega</span>
+                    <input type="text" class="backgroundColor1 h-10 pb-1 px-2 placeholder-neutral-400" disabled value="Chile">
+                    <select name="" id="region" class="backgroundColor1 h-10 px-1" oninput="formUpdate()">
+                        <option value="1">Región de Arica y Parinacota</option>
+                        <option value="2">Región de Tarapacá</option>
+                        <option value="3">Región de Antofagasta</option>
+                        <option value="4">Región de Atacama</option>
+                        <option value="5">Región de Coquimbo</option>
+                        <option value="6">Región de Valparaíso</option>
+                        <option value="7" selected>Región Metropolitana de Santiago</option>
+                        <option value="8">Región del Libertador General Bernardo O'Higgins</option>
+                        <option value="9">Región del Maule</option>
+                        <option value="10">Región de Ñuble</option>
+                        <option value="11">Región del Biobío</option>
+                        <option value="12">Región de La Araucanía</option>
+                        <option value="13">Región de Los Ríos</option>
+                        <option value="14">Región de Los Lagos</option>
+                        <option value="15">Región de Aysén del General Carlos Ibáñez del Campo</option>
+                        <option value="16">Región de Magallanes y de la Antártica Chilena</option>
+                    </select>
+                    <input id="ciudad" type="text" class="backgroundColor1 h-10 pb-1 px-2 placeholder-neutral-400" placeholder="Ciudad" oninput="formUpdate()">
+                    <input id="calle" type="text" class="backgroundColor1 h-10 pb-1 px-2 placeholder-neutral-400" placeholder="Calle" oninput="formUpdate()">
+                    <input id="numero" type="number" class="backgroundColor1 h-10 pb-1 px-2 placeholder-neutral-400" placeholder="Número" oninput="formUpdate()">
+                    <input id="apartamentoCasa" type="text" class="backgroundColor1 h-10 pb-1 px-2 placeholder-neutral-400" placeholder="Apartamento/Casa (si aplica)" oninput="formUpdate()">
+                    <span class="price font-semibold">Total: </span>
+                    <button id="confirmar" style="max-width: 500px;" onclick="createOrder()" disabled
+                        class="flex items-center justify-center text-center w-64 enabled:bg-red-600 disabled:border-gray-500 disabled:border-[1px] text-white font-bold py-2 px-4 rounded-lg enabled:shadow-lg enabled:hover:bg-red-700 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50">
+                        <span class="relative translate-x-1">Confirmar</span>
+                        <svg class="rotate-180 relative translate-x-3 translate-y-[1px] color1" clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m10.978 14.999v3.251c0 .412-.335.75-.752.75-.188 0-.375-.071-.518-.206-1.775-1.685-4.945-4.692-6.396-6.069-.2-.189-.312-.452-.312-.725 0-.274.112-.536.312-.725 1.451-1.377 4.621-4.385 6.396-6.068.143-.136.33-.207.518-.207.417 0 .752.337.752.75v3.251h9.02c.531 0 1.002.47 1.002 1v3.998c0 .53-.471 1-1.002 1z" fill-rule="nonzero"/></svg>
+                    </button>
                 </div>
             </div>
         </div>
@@ -118,7 +127,7 @@
 </body>
 <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.6/xlsx.full.min.js"></script> -->
-<script src="./index.js"></script>
 <script src="../../js/common.js"></script>
+<script src="./index.js"></script>
 
 </html>

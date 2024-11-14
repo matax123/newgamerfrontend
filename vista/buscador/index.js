@@ -2,7 +2,7 @@
 
 function createProductElement(id, title, category, price, img, quantity) {
     return html = `
-        <div class="rounded-lg product-card" data-product-id="${id}">
+        <div class="rounded-lg product-card hidden" data-product-id="${id}">
             <div class="relative w-full h-48 overflow-hidden" style="padding-top: 100%;">
                 <a href="../../vista/producto/index.html?id=${id}" class="absolute inset-0">
                     <img src="${img}" alt="Graphics Card" class="absolute inset-0 w-full h-full object-cover">
@@ -70,11 +70,26 @@ function clearCart() {
 
 let selectCategory = document.getElementById('selectCategory');
 function onCategoryChange(event) {
-    console.log(event.target.value);
-    //change url
-    window.location.href = '?category=' + event.target.value;
+    filterProducts(event.target.value);
+    window.history.replaceState({}, '', '?category=' + event.target.value);
 }
 selectCategory.addEventListener('change', onCategoryChange);
+
+async function filterProducts(category){
+    let productGrid = document.getElementById('product-grid');
+    let productsLists = Array.from(productGrid.children);
+    if(category == 'TODO') {
+        productsLists.forEach(product => {
+            if(product.classList.contains('hidden')) product.classList.remove('hidden');
+        });
+    }
+    else {
+        productsLists.forEach(product => {
+            if(product.querySelector('p').innerText != category) product.classList.add('hidden');
+            else product.classList.remove('hidden');
+        });
+    }
+}
 
 //END: HTML functions
 
@@ -94,14 +109,11 @@ async function loadProducts() {
     let json = await response.json();
     productsLists = json.products;
 
-    console.log(productsLists);
     productsLists.forEach(product => {
         productGrid.innerHTML += createProductElement(product.id, product.name, product.category, product.price, product.imageUrl, product.quantity);
     });
     refreshProductInCart();
 }
-
-loadProducts();
 
 category = decodeURIComponent(window.location.search.split('=')[1])
 
@@ -121,6 +133,7 @@ async function loadCategories() {
     }
     let json = await response.json();
     categories = json.categories.map(item => item.name);
+    categories = ['TODO', ...categories];
     categories.forEach(category => {
         selectCategory.innerHTML += createCategoryElement(category);
     });
@@ -130,4 +143,8 @@ async function loadCategories() {
     }
 }
 
-loadCategories();
+waitToLoadFunction = async function () {
+    // Run both functions in parallel and wait for both to finish
+    await Promise.all([loadProducts(), loadCategories()]);
+    await filterProducts(selectCategory.value);
+};

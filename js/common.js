@@ -19,6 +19,7 @@ function changeDayTime() {
 
 //Global variables
 let backendUrl = 'https://localhost:5000';
+let waitToLoadFunction = async function () { };
 
 //Load function
 window.onload = async function () {
@@ -27,15 +28,15 @@ window.onload = async function () {
     if(dayTime == 'day') dayIcon.classList.remove('hidden');
     else nightIcon.classList.remove('hidden');
 
-    document.getElementById("loading").close();
-    document.querySelector('.preload').classList.remove('preload');
-
-    console.log(JSON.parse(localStorage.getItem('productsIds'))?.length)
-
     let cartQuantity = document.getElementById('cartQuantity');
     let quantity = JSON.parse(localStorage.getItem('productsIds'))?.length || 0;
     cartQuantity.innerText = quantity;
     if (quantity > 0) cartQuantity.classList.remove('hidden');
+
+    await waitToLoadFunction();
+
+    document.getElementById("loading").close();
+    document.querySelector('.preload').classList.remove('preload');
 }
 
 // secondary functions
@@ -92,4 +93,10 @@ function openDialog(id) {
 function closeDialog(id) {
     let dialog = document.getElementById(id);
     dialog.close();
+}
+
+function onClickShoppingCart(url){
+    let productsIds = JSON.parse(localStorage.getItem('productsIds')) || [];
+    if(productsIds.length == 0) return;
+    window.location.href = url;
 }

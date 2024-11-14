@@ -1,17 +1,26 @@
-function createProductItem(id, title, category, price, img, quantity) {
+function createProductElement(id, title, category, price, img, quantity) {
     return html = `
-            <button class="productNotInCard hidden mt-3 bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded" onclick="addProduct(${id})">
-                Add to Cart
-            </button>
-            <div class="productInCart mt-3 hidden flex flex-row justify-start items-center gap-5">
-                <button class="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded" onclick="addProduct(${id})">
-                    +1
-                </button>
-                <span class="quanity font-bold">${quantity}</span>
-                <button class="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded" onclick="removeProduct(${id})">
-                    -1
-                </button>
+        <div class="product-card flex flex-row justify-between p-4 backgroundColor1 max-h-[160px]" data-product-id="${id}">
+            <div class="itemImage relative w-32" style="padding-top: 100%;">
+                <img src="${img}" class="w-32 h-32 absolute inset-0 object-cover p-0 m-0">
             </div>
+            <div class="grid grid-cols-2 grid-rows-[44px,12px] w-[calc(100%-9rem)]">
+                <span class="leading-none font-semibold">${title}</span>
+                <button class="flex flex-row justify-end" onclick="deleteProduct(${id})">
+                    <svg class="fill-white" clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m20.015 6.506h-16v14.423c0 .591.448 1.071 1 1.071h14c.552 0 1-.48 1-1.071 0-3.905 0-14.423 0-14.423zm-5.75 2.494c.414 0 .75.336.75.75v8.5c0 .414-.336.75-.75.75s-.75-.336-.75-.75v-8.5c0-.414.336-.75.75-.75zm-4.5 0c.414 0 .75.336.75.75v8.5c0 .414-.336.75-.75.75s-.75-.336-.75-.75v-8.5c0-.414.336-.75.75-.75zm-.75-5v-1c0-.535.474-1 1-1h4c.526 0 1 .465 1 1v1h5.254c.412 0 .746.335.746.747s-.334.747-.746.747h-16.507c-.413 0-.747-.335-.747-.747s.334-.747.747-.747zm4.5 0v-.5h-3v.5z" fill-rule="nonzero"/></svg>
+                </button>
+                <div class="productInCart mt-3 flex flex-row justify-start items-center gap-3">
+                    <button class="bg-red-600 hover:bg-red-700 text-white font-semibold px-2 rounded" onclick="addProduct(${id})">
+                        +
+                    </button>
+                    <span class="quantity font-bold">0</span>
+                    <button class="bg-red-600 hover:bg-red-700 text-white font-semibold px-2 rounded" onclick="removeProduct(${id})">
+                        -
+                    </button>
+                </div>
+                <span class="text-right">$${price}</span>
+            </div>
+        </div>
     `
 }
 
@@ -29,23 +38,35 @@ function removeProduct(productId) {
     refreshProductInCart();
 }
 
+function deleteProduct(productId) {
+    productsIds = JSON.parse(localStorage.getItem('productsIds')) || [];
+    //remove all ocurrences of productId
+    productsIds = productsIds.filter(id => id != productId);
+    localStorage.setItem('productsIds', JSON.stringify(productsIds));
+    refreshProductInCart();
+}
+
 function refreshProductInCart() {
-    let productInfo = document.querySelector('.productInfo');
-    let productsIds = JSON.parse(localStorage.getItem('productsIds')) || [];
+    productsCards = document.querySelectorAll('.product-card');
+    productsIds = JSON.parse(localStorage.getItem('productsIds')) || [];
     productsQuantity = productsIds.length;
-    productInfo.querySelector('.productNotInCard').classList.add('hidden');
-    productInfo.querySelector('.productInCart').classList.add('hidden');
-    if (!productsIds.includes(parseInt(productDB.id))) productInfo.querySelector('.productNotInCard').classList.remove('hidden');
-    else {
-        productInfo.querySelector('.productInCart').classList.remove('hidden');
-        productInfo.querySelector('.quanity').innerText = productsIds.filter(id => id == parseInt(productDB.id)).length;
-    }
+    let totalPrice = 0;
+    productsCards.forEach(card => {
+        let productId = parseInt(card.dataset.productId);
+        console.log(productId)
+        let quantity = productsIds.filter(id => id == parseInt(productId)).length;
+        console.log(quantity)
+        if(quantity == 0) card.classList.add('hidden');
+        else card.querySelector('.quantity').innerText = quantity;
+        totalPrice += quantity * productsLists.find(product => product.id == productId).price;
+    });
     if (productsQuantity > 0) {
         cartQuantity = document.getElementById('cartQuantity');
         cartQuantity.innerText = productsQuantity;
         cartQuantity.classList.remove('hidden');
     }
     else cartQuantity.classList.add('hidden');
+    document.querySelector('#total .price').innerText = 'Total: $'+totalPrice;
 }
 
 function clearCart() {
@@ -53,21 +74,108 @@ function clearCart() {
     loadProducts();
 }
 
-productDB = {
-    id: 1,
-    title: 'RTX 3080',
-    category: 'Graphics Card',
-    price: 699,
-    img: '../img/007.jpg'
+function formUpdate(){
+    let region = document.getElementById('region').value;
+    let ciudad = document.getElementById('ciudad').value;
+    let calle = document.getElementById('calle').value;
+    let numero = document.getElementById('numero').value;
+    let apartamentoCasa = document.getElementById('apartamentoCasa').value;
+    if(region != '' && ciudad != '' && calle != '' && numero != '' && apartamentoCasa != ''){
+        document.getElementById('confirmar').disabled = false;
+    } else {
+        document.getElementById('confirmar').disabled = true;
+    }
+}
+
+async function createOrder(){
+    let products = JSON.parse(localStorage.getItem('productsIds')) || [];
+    let region = document.getElementById('region').value;
+    let ciudad = document.getElementById('ciudad').value;
+    let calle = document.getElementById('calle').value;
+    let numero = document.getElementById('numero').value;
+    let apartamentoCasa = document.getElementById('apartamentoCasa').value;
+    if(products.length == 0) return alert('No hay productos en el carrito.');
+
+    let distinctProducts = [...new Set(products)];
+    let productsQuantity = distinctProducts.map(id => {
+        return {
+            productId: id,
+            quantity: products.filter(product => product == id).length,
+            price: productsLists.find(p => p.id == id).price
+        }
+    });
+    console.log(productsQuantity);
+    let totalPrice = 0;
+    productsQuantity.forEach(product => {
+        totalPrice += product.price * product.quantity;
+    });
+
+    let body = {
+        products: productsQuantity,
+        totalPrice: totalPrice,
+        regionId: region,
+        city: ciudad,
+        street: calle,
+        houseNumber: numero,
+        residence: apartamentoCasa
+    }
+
+    let response = await fetch(backendUrl + '/CreateOrder', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)
+    });
+    if(response.status != 200) return alert('Error al crear la orden');
+    let json = await response.json();
+    let orderId = json.id;
+    // localStorage.removeItem('productsIds');
+    window.location.href = '../../vista/confirmar/index.html?orderId='+orderId+"&amount="+totalPrice;
 }
 
 
-function loadProduct() {
-    let product = document.querySelector('.product');
-    let productImage = document.querySelector('.productImage');
-    let productInfo = document.querySelector('.productInfo');
-    productInfo.innerHTML += createProductButton(productDB.id, productDB.title, productDB.category, productDB.price, productDB.img, productDB.quantity);
+//Load functions
+async function loadProducts() {
+    let productGrid = document.getElementById('product-grid');
+
+    //fetch products
+    productsLists = [];
+    let response = await fetch(backendUrl + '/GetProducts')
+    if(response.status != 200) {
+        console.log('Error fetching products');
+        return;
+    }
+    let json = await response.json();
+    productsLists = json.products;
+
+    console.log(productsLists);
+    productsLists.forEach(product => {
+        productGrid.innerHTML += createProductElement(product.id, product.name, product.category, product.price, product.imageUrl, product.quantity);
+    });
     refreshProductInCart();
 }
 
-loadProduct();
+loadProducts();
+
+// async function loadRegions() {
+//     let productGrid = document.getElementById('product-grid');
+
+//     //fetch products
+//     productsLists = [];
+//     let response = await fetch(backendUrl + '/GetProducts')
+//     if(response.status != 200) {
+//         console.log('Error fetching products');
+//         return;
+//     }
+//     let json = await response.json();
+//     productsLists = json.products;
+
+//     console.log(productsLists);
+//     productsLists.forEach(product => {
+//         productGrid.innerHTML += createProductElement(product.id, product.name, product.category, product.price, product.imageUrl, product.quantity);
+//     });
+//     refreshProductInCart();
+// }
+
+// loadProducts();

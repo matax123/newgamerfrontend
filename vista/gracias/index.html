@@ -59,7 +59,7 @@
                             class="hidden absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2 bg-red-500 rounded-full text-white text-xs font-bold w-6 h-6 flex items-center justify-center">
                             0
                         </span>
-                    </button>         
+                    </button>       
                 </div>
             </header>
             <hr class="mt-5">
@@ -81,28 +81,13 @@
     </section> -->
     <section class="py-10">
         <div class="container mx-auto">
-            <div class="product grid grid-cols-2 gap-8">
-                <div class="relative w-full h-48 overflow-hidden" style="padding-top: 100%;">
-                    <img id="productImage" class="absolute inset-0 w-full h-full object-cover">
-                </div>
-                <div class="productInfo">
-                    <h1 id="productTitle" class="color4"></h1>
-                    <p id="productPrice" class="text-xl font-bold text-green-600"></p>
-                    <p>Stock: <span id="productStock" class="font-semibold"></span></p>
-                    <button class="productNotInCard hidden mt-3 bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded" onclick="addProduct()">
-                        Add to Cart
-                    </button>
-                    <div class="productInCart mt-3 hidden flex flex-row justify-start items-center gap-5">
-                        <button class="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded" onclick="addProduct()">
-                            +1
-                        </button>
-                        <span class="quantity font-bold">0</span>
-                        <button class="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded" onclick="removeProduct()">
-                            -1
-                        </button>
-                    </div>
-                    <div id="productDescription" class="mt-4 leading-snug"></div>
-                </div>
+            <h1 class="text-center">Gracias!</h1>
+            <p class="text-center">Tu compra ha sido realizada con éxito</p>
+            <div class="w-full flex flex-row justify-center pt-4">
+                <a style="max-width: 500px;" href="../buscador/index.html"
+                    class="text-center w-full bg-red-600 text-white font-bold py-4 px-8 text-lg rounded-lg shadow-lg hover:bg-red-700 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50">
+                    Volver a la tienda
+                </a>
             </div>
         </div>
     </section>

@@ -35,9 +35,9 @@
                         </svg>
                     </button>
                     <div class="flex flex-row px-5 gap-10">
-                        <a href="">DESKTOPS</a>
-                        <a href="">PERIFERICOS</a>
-                        <a href="">NOTEBOOKS</a>
+                        <a href="../../index.html">INICIO</a>
+                        <a href="/vista/buscador/index.html?category=DESKTOPS">DESKTOPS</a>
+                        <a href="/vista/buscador/index.html?category=NOTEBOOKS">NOTEBOOKS</a>
                     </div>
                 </div>
                 <div class="flex flex-row gap-3">
@@ -48,7 +48,7 @@
                             d="m15.97 17.031c-1.479 1.238-3.384 1.985-5.461 1.985-4.697 0-8.509-3.812-8.509-8.508s3.812-8.508 8.509-8.508c4.695 0 8.508 3.812 8.508 8.508 0 2.078-.747 3.984-1.985 5.461l4.749 4.75c.146.146.219.338.219.531 0 .587-.537.75-.75.75-.192 0-.384-.073-.531-.22zm-5.461-13.53c-3.868 0-7.007 3.14-7.007 7.007s3.139 7.007 7.007 7.007c3.866 0 7.007-3.14 7.007-7.007s-3.141-7.007-7.007-7.007z"
                             fill-rule="nonzero" />
                     </svg>
-                    <a class="shopping-cart relative m-0 p-0 flex flex-row justify-center items-center" href="../../vista/carrito/index.html">
+                    <button class="shopping-cart relative m-0 p-0 flex flex-row justify-center items-center" onclick="onClickShoppingCart('../carrito/index.html')">
                         <svg class="color1" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                             viewBox="0 0 24 24">
                             <path
@@ -58,7 +58,7 @@
                             class="hidden absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2 bg-red-500 rounded-full text-white text-xs font-bold w-6 h-6 flex items-center justify-center">
                             0
                         </span>
-                    </a>
+                    </button>
                 </div>
             </header>
             <hr class="mt-5">
@@ -68,15 +68,13 @@
 
     <section class="py-10">
         <div class="container mx-auto">
-            <h2 class="text-3xl font-bold text-center mb-8">Búsqueda</h2>
-
+            <h2 class="text-3xl font-bold text-center mb-3">Búsqueda</h2>
             <div class="flex flex-row justify-center items-center gap-3">
                 <div class="backgroundColor2 relative inline-block text-left">
                     <div class="w-full max-w-sm min-w-[200px]">
                         <div class="relative">
-                            <select id="selectCategory" onchange="selectCategory(event)"
-                                class="w-full backgroundColor2 text-sm rounded pl-3 pr-8 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-400 shadow-sm focus:shadow-md appearance-none cursor-pointer">
-                                <option>TODO</option>
+                            <select id="selectCategory"
+                                class="w-64 font-semibold backgroundColor2 text-sm rounded pl-3 pr-8 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-400 shadow-sm focus:shadow-md appearance-none cursor-pointer">
                             </select>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.2"
                                 stroke="currentColor" class="h-5 w-5 ml-1 absolute top-2.5 right-2.5 text-slate-700">
@@ -86,35 +84,8 @@
                         </div>
                     </div>
                 </div>
-
-
-                <div class="relative flex backgroundColor1 " data-twe-input-wrapper-init data-twe-input-group-ref>
-                    <input type="search"
-                        class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[twe-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-white dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary [&:not([data-twe-input-placeholder-active])]:placeholder:opacity-0"
-                        placeholder="Buscar" aria-label="Search" id="exampleFormControlInput"
-                        aria-describedby="basic-addon1" />
-                    <label for="exampleFormControlInput"
-                        class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[twe-input-state-active]:-translate-y-[0.9rem] peer-data-[twe-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-400 dark:peer-focus:text-primary">Search
-                    </label>
-                    <button
-                        class="relative z-[2] -ms-0.5 flex items-center rounded-e bg-primary px-5  text-xs font-medium uppercase leading-normal text-white shadow-primary-3 transition duration-150 ease-in-out hover:bg-primary-accent-300 hover:shadow-primary-2 focus:bg-primary-accent-300 focus:shadow-primary-2 focus:outline-none focus:ring-0 active:bg-primary-600 active:shadow-primary-2 dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong"
-                        type="button" id="button-addon1" data-twe-ripple-init data-twe-ripple-color="light">
-                        <span class="[&>svg]:h-5 [&>svg]:w-5">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-                            </svg>
-                        </span>
-                    </button>
-                </div>
             </div>
-
-
-
-
-
-            <div id="product-grid" class="p-5 grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-6">
+            <div id="product-grid" class="p-5 grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-6 mt-4">
             </div>
         </div>
     </section>
