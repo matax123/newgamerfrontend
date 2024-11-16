@@ -46,7 +46,7 @@ function refreshProductInCart() {
 
 let productId = parseInt(window.location.search.split('=')[1]);
 
-async function loadProduct() {
+async function loadProducts() {
     let productImage = document.getElementById('productImage')
     let productTitle = document.getElementById('productTitle')
     let productPrice = document.getElementById('productPrice')
@@ -76,4 +76,7 @@ async function loadProduct() {
     refreshProductInCart();
 }
 
-loadProduct();
+waitToLoadFunction = async function () {
+    // Run both functions in parallel and wait for both to finish
+    await Promise.all([loadProducts()]);
+};

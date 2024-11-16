@@ -77,3 +77,8 @@ async function loadProduct() {
 }
 
 loadProduct();
+
+waitToLoadFunction = async function () {
+    // Run both functions in parallel and wait for both to finish
+    await Promise.all([loadProducts()]);
+};
