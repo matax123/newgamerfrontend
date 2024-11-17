@@ -41,6 +41,16 @@ h2 {
     font-weight: 500 !important;
 }
 
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.4rem !important;
+    }
+    
+    h2 {
+        font-size: 1.2rem !important;
+    }
+  }
+
 li::before {
     content: "•";
     margin-right: 8px;
