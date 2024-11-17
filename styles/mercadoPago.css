@@ -1,0 +1,20 @@
+form {
+    background-color: var(--colorBG3) !important;
+}
+
+h1, h2, label, input{
+    color: var(--color1) !important;
+}
+
+#card-number{
+    color: var(--color1) !important;
+}
+
+#card-number-container{
+    background-color: var(--colorBG3) !important;
+}
+
+input {
+    --color: white;
+    color: var(--color);
+}

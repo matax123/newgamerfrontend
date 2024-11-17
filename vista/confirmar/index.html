@@ -3,13 +3,15 @@
 <head>
     <script src="https://sdk.mercadopago.com/js/v2"></script>
     <link rel="stylesheet" href="../../styles/styles.css">
-    <script src="../../js/common.js"></script>
+    <!-- <link rel="stylesheet" href="../../styles/mercadoPago.css"> -->
+    <!-- <script src="../../js/beforeLoad.js"></script> -->
+    <!-- <script src="../../js/common.js"></script> -->
 </head>
 
 <body>
     <style>
-        body{
-            font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"
+        body {
+            font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"
         }
     </style>
     <div id="cardPaymentBrick_container"></div>
@@ -33,7 +35,7 @@
                     visual: {
                         style: {
                             customVariables: {
-                                theme: 'dark', // | 'dark' | 'bootstrap' | 'flat'
+                                theme: 'default', // | 'dark' | 'bootstrap' | 'flat'
                             }
                         }
                     },
@@ -64,7 +66,7 @@
                                         resolve();
                                         window.location.href = "../gracias/index.html";
                                     } else {
-                                        alert("Error al intentar crear el pago");
+                                        alert("Su pago fue rechazado. Por favor intente nuevamente.");
                                         reject();
                                     }
                                 })
@@ -75,6 +77,7 @@
                         });
                     },
                     onError: (error) => {
+                        alert("Erro al intentar hacer el pago, por favor intente más tarde.");
                         // callback llamado para todos los casos de error de Brick
                     },
                 },
