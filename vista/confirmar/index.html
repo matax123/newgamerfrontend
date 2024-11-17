@@ -11,14 +11,14 @@
         let orderId = window.location.search.split('=')[1];
         let transactionAmount = window.location.search.split('=')[2];
         console.log(transactionAmount)
-        const mp = new MercadoPago('TEST-4eb59f4e-3eb9-4802-a4a9-02dac4b806db', {
+        const mp = new MercadoPago('APP_USR-6c648660-4879-4fa7-90ab-06e16f8240d3', {
             locale: 'es-CL'
         });
         const bricksBuilder = mp.bricks();
         const renderCardPaymentBrick = async (bricksBuilder) => {
             const settings = {
                 initialization: {
-                    amount: transactionAmount, // monto a ser pago. Debe ser un número entero.
+                    amount: 100, // monto a ser pago. Debe ser un número entero.
                     payer: {
                         email: "",
                     },
