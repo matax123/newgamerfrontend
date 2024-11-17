@@ -65,7 +65,8 @@ async function loadProducts() {
     let imageUrl = backendUrl + "/GetImage?fileName=" + product.imageName;
     productImage.src = imageUrl;
     productTitle.innerText = product.name;
-    productPrice.innerText = '$' + product.price;
+    console.log(product.price)
+    productPrice.innerText = '$' + product.price.toLocaleString('es-CL');
     productStock.innerText = product.stock;
 
     html = marked.parse(product.description);
