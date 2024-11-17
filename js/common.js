@@ -25,13 +25,16 @@ let waitToLoadFunction = async function () { };
 window.onload = async function () {
     var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-    if(dayTime == 'day') dayIcon.classList.remove('hidden');
-    else nightIcon.classList.remove('hidden');
+    if (dayIcon != null && dayTime == 'day') dayIcon.classList.remove('hidden');
+    else if (nightIcon != null) nightIcon.classList.remove('hidden');
 
     let cartQuantity = document.getElementById('cartQuantity');
     let quantity = JSON.parse(localStorage.getItem('productsIds'))?.length || 0;
-    cartQuantity.innerText = quantity;
-    if (quantity > 0) cartQuantity.classList.remove('hidden');
+    if (cartQuantity != null) {
+        cartQuantity.classList.add('hidden');
+        cartQuantity.innerText = quantity;
+        if (quantity > 0) cartQuantity.classList.remove('hidden');
+    }
 
     await waitToLoadFunction();
 
@@ -95,8 +98,8 @@ function closeDialog(id) {
     dialog.close();
 }
 
-function onClickShoppingCart(url){
+function onClickShoppingCart(url) {
     let productsIds = JSON.parse(localStorage.getItem('productsIds')) || [];
-    if(productsIds.length == 0) return;
+    if (productsIds.length == 0) return;
     window.location.href = url;
 }
