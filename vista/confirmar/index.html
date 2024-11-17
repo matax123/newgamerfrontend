@@ -2,10 +2,16 @@
 
 <head>
     <script src="https://sdk.mercadopago.com/js/v2"></script>
+    <link rel="stylesheet" href="../../styles/styles.css">
     <script src="../../js/common.js"></script>
 </head>
 
 <body>
+    <style>
+        body{
+            font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"
+        }
+    </style>
     <div id="cardPaymentBrick_container"></div>
     <script>
         let orderId = window.location.search.split('=')[1];
