@@ -18,7 +18,7 @@ function changeDayTime() {
 }
 
 //Global variables
-let backendUrl = 'https://localhost:5000';
+let backendUrl = 'https://localhost:8000';
 let waitToLoadFunction = async function () { };
 
 //Load function
