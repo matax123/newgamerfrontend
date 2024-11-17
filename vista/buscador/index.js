@@ -110,7 +110,8 @@ async function loadProducts() {
     productsLists = json.products;
 
     productsLists.forEach(product => {
-        productGrid.innerHTML += createProductElement(product.id, product.name, product.category, product.price, product.imageUrl, product.quantity);
+        let imageUrl = backendUrl + "/GetImage?fileName=" + product.imageName;
+        productGrid.innerHTML += createProductElement(product.id, product.name, product.category, product.price, imageUrl, product.quantity);
     });
     refreshProductInCart();
 }
