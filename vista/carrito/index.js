@@ -151,6 +151,7 @@ async function loadProducts() {
 
     console.log(productsLists);
     productsLists.forEach(product => {
+        let imageUrl = backendUrl + "/GetImage?fileName=" + product.imageName;
         productGrid.innerHTML += createProductElement(product.id, product.name, product.category, product.price, product.imageUrl, product.quantity);
     });
     refreshProductInCart();
