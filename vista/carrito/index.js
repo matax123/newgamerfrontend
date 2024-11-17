@@ -66,7 +66,7 @@ function refreshProductInCart() {
         cartQuantity.classList.remove('hidden');
     }
     else cartQuantity.classList.add('hidden');
-    document.querySelector('#total .price').innerText = 'Total: $'+totalPrice;
+    document.querySelector('#total .price').innerText = 'Total: $'+totalPrice.toLocaleString('es-CL');
 }
 
 function clearCart() {
@@ -152,7 +152,8 @@ async function loadProducts() {
     console.log(productsLists);
     productsLists.forEach(product => {
         let imageUrl = backendUrl + "/GetImage?fileName=" + product.imageName;
-        productGrid.innerHTML += createProductElement(product.id, product.name, product.category, product.price, imageUrl, product.quantity);
+        let price = product.price.toLocaleString('es-CL');
+        productGrid.innerHTML += createProductElement(product.id, product.name, product.category, price, imageUrl, product.quantity);
     });
     refreshProductInCart();
 }

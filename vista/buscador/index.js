@@ -2,25 +2,29 @@
 
 function createProductElement(id, title, category, price, img, quantity) {
     return html = `
-        <div class="rounded-lg product-card hidden" data-product-id="${id}">
-            <div class="relative w-full h-48 overflow-hidden" style="padding-top: 100%;">
-                <a href="../../vista/producto/index.html?id=${id}" class="absolute inset-0">
-                    <img src="${img}" alt="Graphics Card" class="absolute inset-0 w-full h-full object-cover">
-                </a>
+        <div class="rounded-lg product-card flex flex-col justify-between hidden" data-product-id="${id}">
+            <div>
+                <div class="relative w-full h-48 overflow-hidden" style="padding-top: 100%;">
+                    <a href="../../vista/producto/index.html?id=${id}" class="absolute inset-0">
+                        <img src="${img}" alt="Graphics Card" class="absolute inset-0 w-full h-full object-cover">
+                    </a>
+                </div>
+                <h2 class="text-xl font-semibold pt-2">${title}</h2>
+                <p class="text-gray-400">${category}</p>
+                <p class="text-lg mt-2">$${price}</p>
             </div>
-            <h2 class="text-xl font-semibold pt-2">${title}</h2>
-            <p class="text-gray-400">${category}</p>
-            <p class="text-lg mt-2">$${price}</p>
-            <button class="productNotInCard hidden mt-3 bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded" onclick="addProduct(${id})">
-                Add to Cart
-            </button>
-            <div class="productInCart mt-3 hidden flex flex-row justify-start items-center gap-5">
+            <div class="flex justify-center">
+                <button class="productNotInCard hidden mt-3 bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded" onclick="addProduct(${id})">
+                    Agregar al carrito
+                </button>
+            </div>
+            <div class="productInCart mt-3 hidden flex flex-row justify-center items-center gap-5 ">
                 <button class="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded" onclick="addProduct(${id})">
-                    +1
+                    +
                 </button>
                 <span class="quanity font-bold">${quantity}</span>
                 <button class="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded" onclick="removeProduct(${id})">
-                    -1
+                    -
                 </button>
             </div>
         </div>
@@ -111,7 +115,8 @@ async function loadProducts() {
 
     productsLists.forEach(product => {
         let imageUrl = backendUrl + "/GetImage?fileName=" + product.imageName;
-        productGrid.innerHTML += createProductElement(product.id, product.name, product.category, product.price, imageUrl, product.quantity);
+        let price = product.price.toLocaleString('es-CL');
+        productGrid.innerHTML += createProductElement(product.id, product.name, product.category, price, imageUrl, product.quantity);
     });
     refreshProductInCart();
 }
