@@ -80,7 +80,8 @@ function formUpdate(){
     let calle = document.getElementById('calle').value;
     let numero = document.getElementById('numero').value;
     let apartamentoCasa = document.getElementById('apartamentoCasa').value;
-    if(region != '' && ciudad != '' && calle != '' && numero != '' && apartamentoCasa != ''){
+    let check = document.getElementById('check').checked;
+    if(region != '' && ciudad != '' && calle != '' && numero != '' && apartamentoCasa != '' && check == true){
         document.getElementById('confirmar').disabled = false;
     } else {
         document.getElementById('confirmar').disabled = true;
