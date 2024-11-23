@@ -112,6 +112,10 @@
                     <input id="numero" type="number" class="backgroundColor1 h-10 pb-1 px-2 placeholder-neutral-400" placeholder="Número" oninput="formUpdate()">
                     <input id="apartamentoCasa" type="text" class="backgroundColor1 h-10 pb-1 px-2 placeholder-neutral-400" placeholder="Apartamento/Casa (si aplica)" oninput="formUpdate()">
                     <span class="price font-semibold">Total: </span>
+                    <div class="flex flex-row gap-1">
+                        <input id="check" type="checkbox" oninput="formUpdate()">
+                        <span class="text-sm">Acepto los <a href="../info/index.html" target="_blank" class="color4">términos y condiciones</a></span>
+                    </div>
                     <button id="confirmar" style="max-width: 500px;" onclick="createOrder()" disabled
                         class="flex items-center justify-center text-center w-64 enabled:bg-red-600 disabled:border-gray-500 disabled:border-[1px] text-white font-bold py-2 px-4 rounded-lg enabled:shadow-lg enabled:hover:bg-red-700 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 w-full md:w-[300px]">
                         <span class="relative translate-x-1 color1">Confirmar</span>
