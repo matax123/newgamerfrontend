@@ -3,6 +3,7 @@
 <head>
     <script src="https://sdk.mercadopago.com/js/v2"></script>
     <link rel="stylesheet" href="../../styles/styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
     <!-- <link rel="stylesheet" href="../../styles/mercadoPago.css"> -->
     <!-- <script src="../../js/beforeLoad.js"></script> -->
     <!-- <script src="../../js/common.js"></script> -->
@@ -14,7 +15,12 @@
             font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"
         }
     </style>
-    <div id="cardPaymentBrick_container"></div>
+    <div class="container mx-auto px-4 py-10 relative">
+        <div id="cardPaymentBrick_container"></div>
+        <div id="total" class="hidden py-4 mx-4 px-4 relative -translate-y-[50px] bg-red-500 text-white font-semibold text-xl">
+        </div>
+          
+    </div>
     <script>
         let orderId = window.location.search.split('=')[1];
         let transactionAmount = window.location.search.split('=')[2];
@@ -46,6 +52,10 @@
                 callbacks: {
                     onReady: () => {
                         // callback llamado cuando Brick esté listo
+                        let total = document.getElementById('total');
+                        total.innerText = `Total: $${transactionAmount}`;
+                        total.classList.remove('hidden');
+                        console.log(total)
                     },
                     onSubmit: (cardFormData) => {
                         cardFormData.orderId = parseInt(orderId);
