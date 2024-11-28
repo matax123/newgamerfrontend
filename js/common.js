@@ -21,7 +21,7 @@ function changeDayTime() {
 let backendUrl = 'https://localhost:8000';
 let waitToLoadFunction = async function () { };
 
-//Load function
+//Load functions
 window.onload = async function () {
     var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
@@ -29,14 +29,31 @@ window.onload = async function () {
     else if (nightIcon != null) nightIcon.classList.remove('hidden');
 
     let cartQuantity = document.getElementById('cartQuantity');
-    let quantity = JSON.parse(localStorage.getItem('productsIds'))?.length || 0;
-    if (cartQuantity != null) {
+    let productsIdsLocalStorage = JSON.parse(localStorage.getItem('productsIds'));
+
+    let productsIds;
+    async function loadProductsIds() {
+        let response = await fetch(backendUrl + '/GetProducts');
+        let json = await response.json();
+        let products = json.products;
+        productsIds = products.map(p => p.id);
+    }
+
+    await Promise.all([waitToLoadFunction(), loadProductsIds()]);
+
+    productsIdsLocalStorage.map(id => {
+        if (!productsIds.includes(id)) {
+            productsIdsLocalStorage = productsIdsLocalStorage.filter(pId => pId != id);
+        }
+    });
+
+    let quantity = productsIdsLocalStorage.length;
+
+    if (cartQuantity != null && productsIdsLocalStorage != null) {
         cartQuantity.classList.add('hidden');
         cartQuantity.innerText = quantity;
         if (quantity > 0) cartQuantity.classList.remove('hidden');
     }
-
-    await waitToLoadFunction();
 
     document.getElementById("loading").close();
     document.querySelector('.preload').classList.remove('preload');
