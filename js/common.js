@@ -49,7 +49,6 @@ window.onload = async function () {
 
     localStorage.setItem('productsIds', JSON.stringify(productsIdsLocalStorage));
 
-    let quantity = productsIdsLocalStorage.length;
 
     if (cartQuantity != null && productsIdsLocalStorage != null) {
         cartQuantity.classList.add('hidden');
