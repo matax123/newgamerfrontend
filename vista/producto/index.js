@@ -24,7 +24,6 @@ function refreshProductInCart() {
     productNotInCart.classList.add('hidden');
     productInCart.classList.add('hidden');
 
-    console.log(productsIds)
 
     if(productsIds.includes(productId)) {
         quantity.innerText = productsIds.filter(id => id == productId).length;
@@ -65,7 +64,6 @@ async function loadProducts() {
     let imageUrl = backendUrl + "/GetImage?fileName=" + product.imageName;
     productImage.src = imageUrl;
     productTitle.innerText = product.name;
-    console.log(product.price)
     productPrice.innerText = '$' + product.price.toLocaleString('es-CL');
     productStock.innerText = product.stock;
 

@@ -27,7 +27,6 @@
     <script>
         let orderId = window.location.search.split('=')[1];
         let transactionAmount = window.location.search.split('=')[2];
-        console.log(transactionAmount)
         const mp = new MercadoPago('TEST-4eb59f4e-3eb9-4802-a4a9-02dac4b806db', {
             locale: 'es-CL'
         });
@@ -58,7 +57,6 @@
                         let total = document.getElementById('total');
                         total.innerText = `Total: $${transactionAmount}`;
                         total.classList.remove('hidden');
-                        console.log(total)
                     },
                     onSubmit: (cardFormData) => {
                         cardFormData.orderId = parseInt(orderId);
