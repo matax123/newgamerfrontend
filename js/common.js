@@ -41,22 +41,24 @@ window.onload = async function () {
 
     await Promise.all([waitToLoadFunction(), loadProductsIds()]);
 
-    if(productsIdsLocalStorage != null)
+    if (productsIdsLocalStorage != null) {
         productsIdsLocalStorage.map(id => {
             if (!productsIds.includes(id)) {
                 productsIdsLocalStorage = productsIdsLocalStorage.filter(pId => pId != id);
             }
         });
 
-    localStorage.setItem('productsIds', JSON.stringify(productsIdsLocalStorage));
+        localStorage.setItem('productsIds', JSON.stringify(productsIdsLocalStorage));
 
-    let quantity = productsIdsLocalStorage.length;
+        let quantity = productsIdsLocalStorage.length;
 
-    if (cartQuantity != null && productsIdsLocalStorage != null) {
-        cartQuantity.classList.add('hidden');
-        cartQuantity.innerText = quantity;
-        if (quantity > 0) cartQuantity.classList.remove('hidden');
+        if (cartQuantity != null && productsIdsLocalStorage != null) {
+            cartQuantity.classList.add('hidden');
+            cartQuantity.innerText = quantity;
+            if (quantity > 0) cartQuantity.classList.remove('hidden');
+        }
     }
+
 
     document.getElementById("loading").close();
     document.querySelector('.preload').classList.remove('preload');
