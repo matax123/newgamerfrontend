@@ -41,11 +41,12 @@ window.onload = async function () {
 
     await Promise.all([waitToLoadFunction(), loadProductsIds()]);
 
-    productsIdsLocalStorage.map(id => {
-        if (!productsIds.includes(id)) {
-            productsIdsLocalStorage = productsIdsLocalStorage.filter(pId => pId != id);
-        }
-    });
+    if(productsIdsLocalStorage != null)
+        productsIdsLocalStorage.map(id => {
+            if (!productsIds.includes(id)) {
+                productsIdsLocalStorage = productsIdsLocalStorage.filter(pId => pId != id);
+            }
+        });
 
     localStorage.setItem('productsIds', JSON.stringify(productsIdsLocalStorage));
 
