@@ -64,8 +64,18 @@ thead{
 }
 
 table{
+    border-collapse: collapse;
     border: 2px solid var(--colorBG4) !important;
-    padding: 5px !important;
+}
+
+table td, table th {
+    padding: 5px 10px !important;
+}
+
+table th{
+    border : 2px solid var(--colorBG4) !important;
+    border-left-width: 0px !important;
+    border-right-width: 0px !important;
 }
 /* end: general */
 
