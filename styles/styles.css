@@ -65,6 +65,7 @@ thead{
 
 table{
     border: 2px solid var(--colorBG4) !important;
+    padding: 5px !important;
 }
 /* end: general */
 
