@@ -24,8 +24,6 @@ function refreshProductInCart() {
     productNotInCart.classList.add('hidden');
     productInCart.classList.add('hidden');
 
-    console.log(productsIds)
-
     if(productsIds.includes(productId)) {
         quantity.innerText = productsIds.filter(id => id == productId).length;
         productInCart.classList.remove('hidden');

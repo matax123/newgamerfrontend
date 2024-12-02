@@ -58,7 +58,6 @@
                         let total = document.getElementById('total');
                         total.innerText = `Total: $${transactionAmount}`;
                         total.classList.remove('hidden');
-                        console.log(total)
                     },
                     onSubmit: (cardFormData) => {
                         cardFormData.orderId = parseInt(orderId);

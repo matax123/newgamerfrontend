@@ -53,9 +53,7 @@ function refreshProductInCart() {
     let totalPrice = 0;
     productsCards.forEach(card => {
         let productId = parseInt(card.dataset.productId);
-        console.log(productId)
         let quantity = productsIds.filter(id => id == parseInt(productId)).length;
-        console.log(quantity)
         if(quantity == 0) card.classList.add('hidden');
         else card.querySelector('.quantity').innerText = quantity;
         totalPrice += quantity * productsLists.find(product => product.id == productId).price;
@@ -105,7 +103,6 @@ async function createOrder(){
             price: productsLists.find(p => p.id == id).price
         }
     });
-    console.log(productsQuantity);
     let totalPrice = 0;
     productsQuantity.forEach(product => {
         totalPrice += product.price * product.quantity;
@@ -150,7 +147,6 @@ async function loadProducts() {
     let json = await response.json();
     productsLists = json.products;
 
-    console.log(productsLists);
     productsLists.forEach(product => {
         let imageUrl = backendUrl + "/GetImage?fileName=" + product.imageName;
         let price = product.price.toLocaleString('es-CL');
@@ -160,25 +156,3 @@ async function loadProducts() {
 }
 
 loadProducts();
-
-// async function loadRegions() {
-//     let productGrid = document.getElementById('product-grid');
-
-//     //fetch products
-//     productsLists = [];
-//     let response = await fetch(backendUrl + '/GetProducts')
-//     if(response.status != 200) {
-//         console.log('Error fetching products');
-//         return;
-//     }
-//     let json = await response.json();
-//     productsLists = json.products;
-
-//     console.log(productsLists);
-//     productsLists.forEach(product => {
-//         productGrid.innerHTML += createProductElement(product.id, product.name, product.category, product.price, product.imageUrl, product.quantity);
-//     });
-//     refreshProductInCart();
-// }
-
-// loadProducts();
