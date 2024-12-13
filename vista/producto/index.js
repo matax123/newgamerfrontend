@@ -61,7 +61,8 @@ async function loadProducts() {
     let json = await response.json();
     product = json.products[0];
 
-    let imageUrl = backendUrl + "/GetImage?fileName=" + product.imageName;
+    let filesNames = product.imageName.split(',');
+    let imageUrl = backendUrl + "/GetImage?fileName=" + filesNames[0];
     productImage.src = imageUrl;
     productTitle.innerText = product.name;
     productPrice.innerText = '$' + product.price.toLocaleString('es-CL');
