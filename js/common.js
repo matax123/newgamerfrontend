@@ -134,7 +134,7 @@ function createCarousel(container, filesNames) {
     let slidesHTML = '';
     filesNames.forEach(fileName => {
         if (fileName.endsWith('.mp4')) {
-            slidesHTML += `<div class="carousel-slide">
+            slidesHTML += `<div class="carousel-slide bg-black">
                                 <video class="carousel-video" loop muted autoplay>
                                     <source src="${backendUrl}/GetVideo?fileName=${fileName}" type="video/mp4">
                                 </video>
