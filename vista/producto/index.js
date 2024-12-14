@@ -61,8 +61,11 @@ async function loadProducts() {
     let json = await response.json();
     product = json.products[0];
 
-    let imageUrl = backendUrl + "/GetImage?fileName=" + product.imageName;
-    productImage.src = imageUrl;
+    let filesNames = product.filesNames.split(',');
+    let carousel = document.getElementById('carousel');
+    createCarousel(carousel, filesNames);
+    // let imageUrl = backendUrl + "/GetImage?fileName=" + filesNames[0];
+    // productImage.src = imageUrl;
     productTitle.innerText = product.name;
     productPrice.innerText = '$' + product.price.toLocaleString('es-CL');
     productStock.innerText = product.stock;

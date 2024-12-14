@@ -7,6 +7,7 @@
     <title>NewGamer - Producto</title>
     <link rel="icon" href="../../img/icono 3.svg">
     <link href="../../styles/styles.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.19/dist/full.min.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="../../js/beforeLoad.js"></script>
 </head>
@@ -67,12 +68,14 @@
         </div>
     </main>
 
+    <!-- <div id="carousel"></div> -->
+
 
     <section class="py-10">
         <div class="container mx-auto">
             <div class="product flex flex-col gap-4 md:grid md:grid-cols-2 md:gap-8 p-8">
-                <div class="relative w-full h-48 overflow-hidden" style="padding-top: 100%;">
-                    <img id="productImage" class="absolute inset-0 w-full h-full object-cover">
+                <div id="carousel" class="relative w-full">
+                    <!-- <img id="carousel" class="absolute inset-0 w-full h-full object-cover"> -->
                 </div>
                 <div class="productInfo">
                     <h1 id="productTitle" class="color4 leading-none text-lg md:text-xl md:leading-none"></h1>

@@ -114,7 +114,8 @@ async function loadProducts() {
     productsLists = json.products;
 
     productsLists.forEach(product => {
-        let imageUrl = backendUrl + "/GetImage?fileName=" + product.imageName;
+        let filesNames = product.filesNames.split(',');
+        let imageUrl = backendUrl + "/GetImage?fileName=" + filesNames[0];
         let price = product.price.toLocaleString('es-CL');
         productGrid.innerHTML += createProductElement(product.id, product.name, product.category, price, imageUrl, product.quantity);
     });
