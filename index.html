@@ -17,8 +17,8 @@
         <span>Loading...</span>
     </dialog>
 
-    <main class="w-full h-screen flex flex-col justify-center items-center">
-        <div class="container h-full" style="min-height: 700px;">
+    <main class="w-full h-full flex flex-col justify-center items-center" style="min-height: 700px;">
+        <div class="container h-full">
             <header class="flex flex-row justify-between items-center p-3 mt-5 px-5 w-full"
                 style="font-weight: 600; position: sticky">
                 <div class="flex flex-row gap-10">
@@ -36,21 +36,23 @@
                     </button>
                     <div class="flex flex-row px-5 gap-10">
                         <a class="hidden sm:block" href="">INICIO</a>
-                        <a class="hidden sm:block" href="vista/buscador/index.html?category=COMPUTADOR DE ESCRITORIO">DESKTOPS</a>
+                        <a class="hidden sm:block"
+                            href="vista/buscador/index.html?category=COMPUTADOR DE ESCRITORIO">DESKTOPS</a>
                         <a class="hidden sm:block" href="vista/buscador/index.html?category=NOTEBOOK">NOTEBOOKS</a>
                     </div>
                 </div>
                 <div class="flex flex-row gap-3">
                     <a href="vista/buscador/index.html">
                         <svg class="color1" clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round"
-                        stroke-miterlimit="2" viewBox="0 0 24 24" width="24" height="24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="m15.97 17.031c-1.479 1.238-3.384 1.985-5.461 1.985-4.697 0-8.509-3.812-8.509-8.508s3.812-8.508 8.509-8.508c4.695 0 8.508 3.812 8.508 8.508 0 2.078-.747 3.984-1.985 5.461l4.749 4.75c.146.146.219.338.219.531 0 .587-.537.75-.75.75-.192 0-.384-.073-.531-.22zm-5.461-13.53c-3.868 0-7.007 3.14-7.007 7.007s3.139 7.007 7.007 7.007c3.866 0 7.007-3.14 7.007-7.007s-3.141-7.007-7.007-7.007z"
-                            fill-rule="nonzero" />
-                    </svg>
+                            stroke-miterlimit="2" viewBox="0 0 24 24" width="24" height="24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="m15.97 17.031c-1.479 1.238-3.384 1.985-5.461 1.985-4.697 0-8.509-3.812-8.509-8.508s3.812-8.508 8.509-8.508c4.695 0 8.508 3.812 8.508 8.508 0 2.078-.747 3.984-1.985 5.461l4.749 4.75c.146.146.219.338.219.531 0 .587-.537.75-.75.75-.192 0-.384-.073-.531-.22zm-5.461-13.53c-3.868 0-7.007 3.14-7.007 7.007s3.139 7.007 7.007 7.007c3.866 0 7.007-3.14 7.007-7.007s-3.141-7.007-7.007-7.007z"
+                                fill-rule="nonzero" />
+                        </svg>
                     </a>
-                    <button class="shopping-cart relative m-0 p-0 flex flex-row justify-center items-center" onclick="onClickShoppingCart('vista/carrito/index.html')">
+                    <button class="shopping-cart relative m-0 p-0 flex flex-row justify-center items-center"
+                        onclick="onClickShoppingCart('vista/carrito/index.html')">
                         <svg class="color1" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                             viewBox="0 0 24 24">
                             <path
@@ -64,20 +66,29 @@
                 </div>
             </header>
             <hr class="mt-5">
-            <section class="w-full h-full flex flex-column justify-center items-center py-10">
-                <div class="container h-100 flex flex-col" style="position: relative; bottom: 50px;">
-                    <div class="flex flex-col lg:flex-row pt-20 pb-10 px-4 justify-center items-center gap-5 lg:gap-12">
-                        <div class="flex flex-col gap-3 lg:gap-12 pb-8 lg:pb-0">
-                            <span class="text-5xl leading-tight text-center text-balance">Encuentra los <b class="color4">mejores</b> <br>
-                                PC Gamer</span>
-                            <div class="w-full flex flex-row justify-center">
-                                <a style="max-width: 500px;" href="vista/buscador/index.html"
-                                    class="text-center w-full bg-red-600 text-white font-bold py-4 px-8 text-lg rounded-lg shadow-lg hover:bg-red-700 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50">
-                                    Start!
-                                </a>
-                            </div>
+            <section class="w-full flex flex-column justify-center items-center py-10">
+                <div class="container flex flex-col">
+                    <div class="flex flex-col lg:grid lg:grid-cols-2 px-4 justify-center items-center gap-5 lg:gap-12 xl:gap-x-40">
+                        <div class="flex flex-col lg:items-end lg:col-start-1 lg:row-start-1">
+                            <span class="text-5xl leading-tight text-center text-balance">
+                                Encuentra los <b class="color4">mejores</b><br>
+                            </span>
+                            <span class="text-5xl w-full max-w-[472px]">
+                                <b
+                                    class="block bg-[url('./img/redDash.png')] bg-cover bg-center bg-no-repeat w-full max-w-[472px] h-[200px] leading-[200px] [-webkit-text-stroke:1px_#500] text-center">
+                                    PC GAMER
+                                </b>
+                            </span>
                         </div>
-                        <img class="difuminated" src="img/002.png" alt="">
+                        <div class="flex justify-center lg:justify-start">
+                            <img class="difuminated lg:col-start-2 lg:row-start-1" src="img/002.png" alt="">
+                        </div>
+                        <div class="w-full flex flex-row justify-center lg:col-span-2">
+                            <a style="max-width: 500px;" href="vista/buscador/index.html"
+                                class="text-center w-full bg-red-600 text-white font-bold py-4 px-8 text-lg rounded-lg shadow-lg hover:bg-red-700 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50">
+                                Start!
+                            </a>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -136,8 +147,7 @@
     </section>
 
 </body>
-<script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.6/xlsx.full.min.js"></script> -->
+
 <script src="./js/common.js"></script>
 
 </html>
