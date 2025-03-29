@@ -18,7 +18,7 @@ function changeDayTime() {
 }
 
 //Global variables
-let backendUrl = 'http://localhost:5000';
+let backendUrl = 'https://backend.newgamer.cl';
 let waitToLoadFunction = async function () { };
 
 //Load functions
