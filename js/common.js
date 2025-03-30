@@ -25,6 +25,8 @@ let waitToLoadFunction = async function () { };
 window.onload = async function () {
     var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
+    document.body.style = "opacity: 1;";
+
     if (dayIcon != null && dayTime == 'day') dayIcon.classList.remove('hidden');
     else if (nightIcon != null) nightIcon.classList.remove('hidden');
 
