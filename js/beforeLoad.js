@@ -5,3 +5,6 @@ else if(dayTime == null) dayTime = 'day';
 if (dayTime != null && dayTime == 'night') {
     document.documentElement.setAttribute('theme', 'dark');
 }
+else{
+    document.documentElement.setAttribute('theme', 'light');
+}

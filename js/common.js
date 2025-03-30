@@ -43,7 +43,7 @@ window.onload = async function () {
 
     if (productsIdsLocalStorage != null) {
         productsIdsLocalStorage.map(id => {
-            if (!productsIds.includes(id)) {
+            if (productsIds != null && !productsIds.includes(id)) {
                 productsIdsLocalStorage = productsIdsLocalStorage.filter(pId => pId != id);
             }
         });
