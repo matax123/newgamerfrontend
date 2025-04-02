@@ -11,11 +11,12 @@
     <script src="./js/beforeLoad.js"></script>
 </head>
 
+<dialog open id="loading" class="flex flex-col">
+    <span class="lds-dual-ring"></span>
+    <span>Loading...</span>
+</dialog>
 <body class="preload" data-spy="#scroll" data-target="#nav" data-offset="20" style="opacity: 0;">
-    <dialog open id="loading" class="flex flex-col">
-        <span class="lds-dual-ring"></span>
-        <span>Loading...</span>
-    </dialog>
+
 
     <main class="w-full h-full flex flex-col justify-center items-center" style="min-height: 700px;">
         <div class="container h-full">
